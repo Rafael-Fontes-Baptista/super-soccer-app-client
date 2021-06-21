@@ -1,0 +1,17 @@
+button:focus {
+  outline: none;
+}
+
+/* Standard Button Style */
+
+.standard-button {
+  margin: 5px;
+  width: 300px;
+  height: 60px;
+  background-color: #05386b;
+  color: #fff;
+}
+
+.standard-button:hover {
+  background-color: #379683;
+}

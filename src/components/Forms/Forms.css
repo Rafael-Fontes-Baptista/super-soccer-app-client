@@ -1,0 +1,20 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.form-group input {
+  width: 300px;
+  padding: 15px 20px;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  font-size: 1.2rem;
+}
+
+.input-color {
+  height: 60px;
+  padding: 0 !important;
+}
