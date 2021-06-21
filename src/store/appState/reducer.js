@@ -10,6 +10,7 @@ const initialState = {
   message: null,
 }
 
+// eslint-disable-next-line
 export default (state = initialState, action) => {
   switch (action.type) {
     case APP_LOADING:
