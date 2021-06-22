@@ -40,7 +40,12 @@ export default function SignupForm(props) {
             required
           ></input>
         </div>
-        <StandardButton type="submit" text="Sign Up" onClick={props.onSubmit} />
+        <StandardButton
+          to="/"
+          type="submit"
+          text="Sign Up"
+          onClick={props.onSubmit}
+        />
       </form>
     </div>
   )

@@ -34,7 +34,6 @@ export default function LoginPage() {
   }
 
   const submitForm = (e) => {
-    console.log("hi")
     e.preventDefault()
 
     dispatch(login(user.email, user.password))

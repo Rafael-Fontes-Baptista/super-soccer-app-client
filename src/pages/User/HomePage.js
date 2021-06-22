@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { logOut } from "../../store/user/actions"
 import { selectUser } from "../../store/user/selectors"
@@ -9,8 +9,6 @@ import "../pages.css"
 export default function HomePage() {
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
-
-  useEffect(() => {}, [])
 
   return (
     <div className="page-layout">
