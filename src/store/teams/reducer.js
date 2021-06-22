@@ -1,4 +1,8 @@
-import { FETCH_TEAMS_SUCCESS, CREATE_TEAM_SUCCESS } from "./actions"
+import {
+  FETCH_TEAMS_SUCCESS,
+  CREATE_TEAM_SUCCESS,
+  DELETE_TEAM_SUCCESS,
+} from "./actions"
 
 const initialState = []
 
@@ -10,6 +14,11 @@ export default (state = initialState, action) => {
 
     case CREATE_TEAM_SUCCESS:
       return [...state, action.payload]
+
+    case DELETE_TEAM_SUCCESS:
+      const teamId = action.payload
+      const teamsUpdated = state.filter((team) => team.id !== teamId)
+      return [...teamsUpdated]
 
     default:
       return state

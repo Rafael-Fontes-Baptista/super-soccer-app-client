@@ -4,6 +4,7 @@ import axios from "axios"
 
 export const FETCH_TEAMS_SUCCESS = "FETCH_TEAMS_SUCCESS"
 export const CREATE_TEAM_SUCCESS = "CREATE_TEAM_SUCCESS"
+export const DELETE_TEAM_SUCCESS = "DELETE_TEAM_SUCCESS"
 
 export const fetchTeamsSuccess = (teams) => ({
   type: FETCH_TEAMS_SUCCESS,
@@ -13,6 +14,11 @@ export const fetchTeamsSuccess = (teams) => ({
 export const createTeamSuccess = (team) => ({
   type: CREATE_TEAM_SUCCESS,
   payload: team,
+})
+
+export const deleteTeamSuccess = (team_id) => ({
+  type: DELETE_TEAM_SUCCESS,
+  payload: team_id,
 })
 
 export const fetchTeams = () => {
@@ -47,6 +53,24 @@ export const createTeam = (name, abrev, color) => {
         }
       )
       dispatch(createTeamSuccess(response.data.newTeam))
+    } catch (e) {
+      console.log(e.message)
+    }
+  }
+}
+
+export const deleteTeam = (team_id) => {
+  return async (dispatch, getState) => {
+    const token = selectToken(getState())
+
+    if (token === null) return
+
+    try {
+      const response = await axios.delete(`${apiUrl}/teams/${team_id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      console.log("team deleted?", response.data)
+      dispatch(deleteTeamSuccess(team_id))
     } catch (e) {
       console.log(e.message)
     }

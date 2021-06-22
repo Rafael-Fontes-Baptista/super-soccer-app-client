@@ -72,7 +72,12 @@ export default function AddTeamForm(props) {
             required
           ></input>
         </div>
-        <StandardButton type="submit" text="Save" onClick={addTeam} />
+        <StandardButton
+          to="/teams"
+          type="submit"
+          text="Save"
+          onClick={addTeam}
+        />
       </form>
       <CancelButton onClick={() => props.toggleAddMode(false)} />
     </div>

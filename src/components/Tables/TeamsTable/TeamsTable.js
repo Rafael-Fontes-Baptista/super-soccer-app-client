@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { selectTeams } from "../../../store/teams/selectors"
 import { fetchTeams } from "../../../store/teams/actions"
+import { deleteTeam } from "../../../store/teams/actions"
 import "./TeamsTable.css"
 import "../Tables.css"
 
@@ -11,7 +12,7 @@ export default function TeamsTable(props) {
 
   useEffect(() => {
     dispatch(fetchTeams())
-  }, [])
+  }, [dispatch])
 
   return (
     <div>
@@ -49,7 +50,7 @@ export default function TeamsTable(props) {
                     ) : (
                       <button
                         className="delete-button"
-                        // onClick={}
+                        onClick={() => dispatch(deleteTeam(item.id))}
                       >
                         <i className="fas fa-trash-alt"></i>
                       </button>
