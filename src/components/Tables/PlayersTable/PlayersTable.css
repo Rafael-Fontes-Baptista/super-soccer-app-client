@@ -1,0 +1,39 @@
+#players-table {
+  max-height: 150px;
+}
+#players-table tr.td {
+  height: 70px;
+}
+#players-table tr > *:nth-child(1) {
+  width: 20%;
+}
+#players-table tr > *:nth-child(2) {
+  width: 60%;
+  text-align: left;
+}
+#players-table tr > *:nth-child(3) {
+  width: 20%;
+}
+
+.user-status button {
+  width: 60px;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #05386b;
+}
+
+.user-active {
+  background-color: #379683;
+}
+
+.user-active:hover {
+  background-color: #c80004;
+}
+
+.user-inactive {
+  background-color: #c80004;
+}
+
+.user-inactive:hover {
+  background-color: #379683;
+}

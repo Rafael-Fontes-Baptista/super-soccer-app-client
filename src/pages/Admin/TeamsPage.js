@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import TeamsTable from "../../components/Tables/TeamsTable/TeamsTable"
 import AddTeamForm from "../../components/Forms/AddTeamForm"
-import GoBackButton from "../../components/Buttons/GoBackButton"
 import StandardButton from "../../components/Buttons/StandardButton.js"
+import GoBackButton from "../../components/Buttons/GoBackButton"
 import "../pages.css"
 
 export default function TeamsPage() {
