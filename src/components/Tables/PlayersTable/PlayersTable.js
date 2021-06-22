@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { selectPlayers } from "../../../store/players/selectors"
 import { fetchPlayers } from "../../../store/players/actions"
+import { updatePlayerStatus } from "../../../store/players/actions"
 import "./PlayersTable.css"
 import "../Tables.css"
 
@@ -18,8 +19,8 @@ export default function PlayersTable() {
     const oStar = "far fa-star"
     const xStar = "fas fa-star"
 
-    return arrayStars.map((item) => (
-      <i className={stars < item ? oStar : xStar}></i>
+    return arrayStars.map((item, index) => (
+      <i key={index} className={stars < item ? oStar : xStar}></i>
     ))
   }
 
@@ -54,7 +55,9 @@ export default function PlayersTable() {
                   </td>
                   <td className="user-status">
                     <button
-                      // onClick={}
+                      onClick={() =>
+                        dispatch(updatePlayerStatus(item.id, item.status))
+                      }
                       className={item.status ? "user-active" : "user-inactive"}
                     >
                       {item.status ? "active" : "inactive"}

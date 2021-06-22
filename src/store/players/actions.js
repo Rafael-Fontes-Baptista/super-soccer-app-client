@@ -3,10 +3,16 @@ import { selectToken } from "../user/selectors"
 import axios from "axios"
 
 export const FETCH_PLAYERS_SUCCESS = "FETCH_PLAYERS_SUCCESS"
+export const UPDATE_PLAYER_STATUS_SUCCESS = "UPDATE_PLAYER_STATUS_SUCCESS"
 
 export const fetchTeamsSuccess = (players) => ({
   type: FETCH_PLAYERS_SUCCESS,
   payload: players,
+})
+
+export const updatePlayerStatusSuccess = (player) => ({
+  type: UPDATE_PLAYER_STATUS_SUCCESS,
+  payload: player,
 })
 
 export const fetchPlayers = () => {
@@ -20,6 +26,34 @@ export const fetchPlayers = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       dispatch(fetchTeamsSuccess(response.data.users))
+    } catch (e) {
+      console.log(e.message)
+    }
+  }
+}
+
+export const updatePlayerStatus = (player_id, status) => {
+  return async (dispatch, getState) => {
+    const token = selectToken(getState())
+
+    if (token === null) return
+
+    let newStatus
+    if (status === true) {
+      newStatus = false
+    } else if (status === false) {
+      newStatus = true
+    }
+
+    try {
+      const response = await axios.patch(
+        `${apiUrl}/users/${player_id}`,
+        { status: newStatus },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      dispatch(updatePlayerStatusSuccess(response.data.userToUpdate))
     } catch (e) {
       console.log(e.message)
     }
