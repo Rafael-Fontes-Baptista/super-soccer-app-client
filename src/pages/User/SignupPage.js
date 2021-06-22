@@ -10,6 +10,13 @@ export default function SignupPage() {
   const dispatch = useDispatch()
   const token = useSelector(selectToken)
   const history = useHistory()
+
+  useEffect(() => {
+    if (token !== null) {
+      history.push("/")
+    }
+  }, [token, history])
+
   const [user, setUser] = useState({
     full_name: "",
     email: "",
@@ -17,12 +24,6 @@ export default function SignupPage() {
     avatar_url:
       "https://image.freepik.com/vetores-gratis/personagem-de-avatar-jovem_24877-9475.jpg",
   })
-
-  useEffect(() => {
-    if (token !== null) {
-      history.push("/")
-    }
-  }, [token, history])
 
   const handleChange = (e) => {
     const { name, value } = e.target

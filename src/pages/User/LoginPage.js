@@ -11,16 +11,17 @@ export default function LoginPage() {
   const dispatch = useDispatch()
   const token = useSelector(selectToken)
   const history = useHistory()
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  })
 
   useEffect(() => {
     if (token !== null) {
       history.push("/")
     }
   }, [token, history])
+
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  })
 
   const handleChange = (e) => {
     const { name, value } = e.target

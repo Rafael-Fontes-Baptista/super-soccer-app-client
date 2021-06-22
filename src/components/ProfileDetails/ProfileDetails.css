@@ -1,0 +1,32 @@
+.avatar-placeholder {
+  margin-bottom: 20px;
+  width: 200px;
+  border: 2px solid #000;
+}
+
+.avatar-sm {
+  width: 50px;
+}
+
+.userStars {
+  text-align: flex-start;
+  color: #ffa651;
+}
+
+.profile-data {
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.profile-description {
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: left;
+  width: 200px;
+  padding: 10px;
+}
+
+.profile-description h6,
+.profile-description p {
+  color: #fff;
+  margin: 2px;
+}
