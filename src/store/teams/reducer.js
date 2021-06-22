@@ -1,4 +1,4 @@
-import { FETCH_TEAMS_SUCCESS } from "./actions"
+import { FETCH_TEAMS_SUCCESS, CREATE_TEAM_SUCCESS } from "./actions"
 
 const initialState = []
 
@@ -7,6 +7,9 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_TEAMS_SUCCESS:
       return [...action.payload]
+
+    case CREATE_TEAM_SUCCESS:
+      return [...state, action.payload]
 
     default:
       return state

@@ -11,7 +11,7 @@ export default function TeamsTable(props) {
 
   useEffect(() => {
     dispatch(fetchTeams())
-  }, [dispatch])
+  }, [])
 
   return (
     <div>

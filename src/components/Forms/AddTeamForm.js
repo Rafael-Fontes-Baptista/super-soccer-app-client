@@ -1,14 +1,13 @@
 import React, { useState } from "react"
+import { useDispatch } from "react-redux"
+import { createTeam } from "../../store/teams/actions.js"
 import StandardButton from "../Buttons/StandardButton.js"
 import CancelButton from "../Buttons/CancelButton.js"
 import "./Forms.css"
 
 export default function AddTeamForm(props) {
-  const Teams = props.teams
-  const [message, set_message] = useState("")
-  const [teams, setTeams] = useState(Teams)
+  const dispatch = useDispatch()
   const [newTeam, set_newTeam] = useState({
-    id: teams.length + 1,
     name: "",
     abrev: "",
     color: "#000000",
@@ -26,32 +25,22 @@ export default function AddTeamForm(props) {
 
   const addTeam = (e) => {
     e.preventDefault()
-    if (
-      newTeam.name === false ||
-      newTeam.abrev === false ||
-      newTeam.color === false
-    ) {
-      set_message("⚠️ Please, all fields required")
-    } else {
-      teams.push(newTeam)
-      setTeams(teams)
-      set_newTeam({
-        id: teams.length + 1,
-        name: "",
-        abrev: "",
-        color: "#000000",
-      })
-      props.toggleAddMode(false)
-    }
+
+    dispatch(createTeam(newTeam.name, newTeam.abrev, newTeam.color))
+    set_newTeam({
+      name: "",
+      abrev: "",
+      color: "#000000",
+    })
+    props.toggleAddMode(false)
   }
 
   return (
     <div>
       <h3>
-        <i class="fas fa-flag"></i> New Team
+        <i className="fas fa-flag"></i> New Team
       </h3>
-      <p className="messageBox">{message}</p>
-      <form className="login-form" onSubmit={addTeam}>
+      <form className="login-form">
         <div className="form-group">
           <input
             type="text"

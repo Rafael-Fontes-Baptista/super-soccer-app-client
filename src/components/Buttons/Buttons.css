@@ -15,3 +15,16 @@ button:focus {
 .standard-button:hover {
   background-color: #379683;
 }
+
+/* Cancel Button Style */
+
+.cancel-button {
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  color: #fff;
+}
+
+.cancel-button:hover {
+  text-decoration: underline;
+}
