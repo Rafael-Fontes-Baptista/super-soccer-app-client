@@ -1,0 +1,17 @@
+/* Table of Teams */
+#teams-table tr > *:nth-child(1) {
+  text-align: left;
+}
+#teams-table tr > *:nth-child(3) {
+  text-align: right;
+}
+
+#teams-table tr > *:nth-child(1) {
+  width: 40%;
+}
+#teams-table tr > *:nth-child(2) {
+  width: 30%;
+}
+#teams-table tr > *:nth-child(3) {
+  width: 30%;
+}

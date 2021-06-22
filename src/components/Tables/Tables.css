@@ -1,0 +1,98 @@
+/* Teams Table */
+
+table {
+  width: 300px;
+  margin-bottom: 5px;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+}
+
+th {
+  background-color: #05386b;
+  font-size: 1rem;
+  text-align: center;
+}
+
+td {
+  color: #05386b;
+  text-align: center;
+  border-bottom: none;
+  border-left: none;
+  font-size: 0.8rem;
+}
+
+tr {
+  display: table;
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+}
+
+table tr > *:nth-child(1) {
+  text-align: left;
+}
+
+table tr:nth-child(even) {
+  background-color: #eee;
+}
+
+table tr:nth-child(odd) {
+  background-color: #ddd;
+}
+
+thead {
+  display: table;
+  width: 100%;
+}
+
+tbody {
+  display: block;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+/* Table of Information */
+
+#tableOfInfo-table tr > *:nth-child(1) {
+  width: 36%;
+}
+#tableOfInfo-table tr > *:nth-child(2) {
+  width: 16%;
+}
+#tableOfInfo-table tr > *:nth-child(3) {
+  width: 16%;
+}
+#tableOfInfo-table tr > *:nth-child(4) {
+  width: 16%;
+}
+#tableOfInfo-table tr > *:nth-child(5) {
+  width: 16%;
+}
+
+.delete-button {
+  border: none;
+  color: #c80004;
+  background-color: transparent;
+}
+
+.view-mode-button {
+  background-color: initial;
+  color: #fff;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-mode-button:hover {
+  background-color: #379683;
+}
