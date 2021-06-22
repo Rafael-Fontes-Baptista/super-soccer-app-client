@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { selectPlayers } from "../../../store/players/selectors"
 import { fetchPlayers } from "../../../store/players/actions"
 import { updatePlayerStatus } from "../../../store/players/actions"
+import { updatePlayerStars } from "../../../store/players/actions"
 import "./PlayersTable.css"
 import "../Tables.css"
 
@@ -14,14 +15,22 @@ export default function PlayersTable() {
     dispatch(fetchPlayers())
   }, [dispatch])
 
-  const createStarIcon = (stars) => {
+  const createStarIcon = (user_id, stars) => {
     let arrayStars = [1, 2, 3, 4, 5]
     const oStar = "far fa-star"
     const xStar = "fas fa-star"
 
-    return arrayStars.map((item, index) => (
-      <i key={index} className={stars < item ? oStar : xStar}></i>
-    ))
+    return arrayStars.map((item, index) => {
+      const starValue = index + 1
+      return (
+        <button
+          className="stars-button"
+          onClick={() => dispatch(updatePlayerStars(user_id, starValue))}
+        >
+          <i key={index} className={stars < item ? oStar : xStar}></i>
+        </button>
+      )
+    })
   }
 
   return (
@@ -51,7 +60,7 @@ export default function PlayersTable() {
                     <br></br>
                     {item.email}
                     <br></br>
-                    {createStarIcon(item.stars)}
+                    {createStarIcon(item.id, item.stars)}
                   </td>
                   <td className="user-status">
                     <button

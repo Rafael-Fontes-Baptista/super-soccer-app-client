@@ -37,3 +37,17 @@
 .user-inactive:hover {
   background-color: #379683;
 }
+
+.stars-button {
+  background-color: transparent;
+  border: none;
+  color: #05386b;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.stars-button:hover {
+  color: #ffd700;
+}
