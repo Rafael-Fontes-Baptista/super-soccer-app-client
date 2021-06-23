@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router"
 import { useParams } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { selectUser } from "../../store/user/selectors"
-import { selectTournaments } from "../../store/tournaments/selectors"
+import { selectTournamentById } from "../../store/tournamentDetails/selectors"
+import { fetchTournamentById } from "../../store/tournamentDetails/actions"
 import TournamentInfo from "../../components/Tournament/TournamentInfo/TournamentInfo"
 import EditTournamentForm from "../../components/Forms/EditTournamentForm"
 import GoBackButton from "../../components/Buttons/GoBackButton"
@@ -13,9 +14,9 @@ import "./../pages.css"
 export default function TournamentPage() {
   const { id } = useParams()
   const history = useHistory()
+  const dispatch = useDispatch()
   const user = useSelector(selectUser)
-  const tournaments = useSelector(selectTournaments)
-  const tournament = tournaments.find((tour) => tour.id === parseInt(id))
+  const tournament = useSelector(selectTournamentById)
 
   useEffect(() => {
     if (user.token === null) {
@@ -23,40 +24,51 @@ export default function TournamentPage() {
     }
   }, [user.token, history])
 
+  useEffect(() => {
+    dispatch(fetchTournamentById(id))
+  }, [dispatch, id])
+
   const [editMode, set_editMode] = useState(false)
 
   return (
     <div className="page-layout">
       {!editMode && (
         <>
-          <TournamentInfo tournament={tournament} />
-          {user.isAdmin ? (
-            <>
-              <StandardButton
-                to={`/tournaments/${id}/details`}
-                type="submit"
-                text="Start"
-              />
-              <StandardButton
-                type="submit"
-                text="Edit"
-                onClick={() => {
-                  set_editMode(true)
-                }}
-              />
-            </>
+          {tournament.length === 0 ? (
+            <p>loading...</p>
           ) : (
-            <StandardButton
-              type="submit"
-              text="Participate"
-              onClick={() => {
-                set_editMode(true)
-              }}
-            />
+            <>
+              <TournamentInfo tournament={tournament} />
+              {user.isAdmin ? (
+                <>
+                  <StandardButton
+                    to={`/tournaments/${id}/details`}
+                    type="submit"
+                    text="Start"
+                  />
+                  <StandardButton
+                    type="submit"
+                    text="Edit"
+                    onClick={() => {
+                      set_editMode(true)
+                    }}
+                  />
+                </>
+              ) : (
+                <StandardButton
+                  type="submit"
+                  text="Participate"
+                  onClick={() => {
+                    set_editMode(true)
+                  }}
+                />
+              )}
+              <GoBackButton to="/tournaments" />
+            </>
           )}
-          <GoBackButton to="/tournaments" />
         </>
       )}
+
       {editMode && (
         <EditTournamentForm
           toggleAddMode={() => set_editMode(!editMode)}

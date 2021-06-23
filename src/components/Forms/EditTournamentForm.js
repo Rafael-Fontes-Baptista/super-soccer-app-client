@@ -88,12 +88,7 @@ export default function AddTournamentForm(props) {
             required
           ></input>
         </div>
-        <StandardButton
-          to={`/tournament/${tournament.id}`}
-          type="submit"
-          text="Save"
-          onClick={editTournament}
-        />
+        <StandardButton type="submit" text="Save" onClick={editTournament} />
       </form>
       <CancelButton onClick={() => props.toggleAddMode(false)} />
     </div>

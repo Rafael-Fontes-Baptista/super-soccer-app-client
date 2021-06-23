@@ -13,11 +13,11 @@ export default function TournamentInfo(props) {
           <i className="far fa-calendar-alt"></i> | {tournament.date}
         </p>
         <p>
-          <i class="far fa-clock"></i> | {tournament.time}
+          <i className="far fa-clock"></i> | {tournament.time}
         </p>
       </div>
       <div>
-        <p>{tournament.local}</p>
+        <p>{props.tournament.local}</p>
       </div>
     </div>
   )

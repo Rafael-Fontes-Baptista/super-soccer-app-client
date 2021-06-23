@@ -4,6 +4,7 @@ import user from "./user/reducer"
 import teams from "./teams/reducer"
 import players from "./players/reducer"
 import tournaments from "./tournaments/reducer"
+import tournamentDetails from "./tournamentDetails/reducer"
 
 export default combineReducers({
   appState,
@@ -11,4 +12,5 @@ export default combineReducers({
   teams,
   players,
   tournaments,
+  tournamentDetails,
 })
