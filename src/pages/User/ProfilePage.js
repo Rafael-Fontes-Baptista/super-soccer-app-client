@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import { useHistory } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
 import { selectUser } from "../../store/user/selectors"
 import { updateProfile } from "../../store/user/actions"
@@ -8,7 +9,15 @@ import "../pages.css"
 
 export default function ProfilePage() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const user = useSelector(selectUser)
+
+  useEffect(() => {
+    if (user.token === null) {
+      history.push("/login")
+    }
+  }, [user.token, history])
+
   const [userDetails, set_userDetails] = useState({
     avatar_url: user.avatar_url,
     full_name: user.full_name,
