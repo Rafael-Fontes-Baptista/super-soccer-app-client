@@ -64,8 +64,12 @@ tbody {
 
 .delete-button {
   border: none;
-  color: #c80004;
+  color: #05386b;
   background-color: transparent;
+}
+
+.delete-button:hover {
+  color: #c80004;
 }
 
 .view-mode-button {

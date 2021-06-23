@@ -1,0 +1,21 @@
+.tournament-details {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 300px;
+  padding: 10px;
+  color: #fff;
+}
+
+.tournament-details h2,
+.tournament-details p {
+  margin-bottom: 3px;
+}
+
+.tournament-details h2 {
+  font-size: 1.4rem;
+}
+
+.tournament-details p {
+  font-size: 0.8rem;
+}
