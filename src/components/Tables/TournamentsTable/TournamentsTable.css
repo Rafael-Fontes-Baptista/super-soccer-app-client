@@ -1,0 +1,26 @@
+/* Table of Tournaments */
+
+#tournaments-table tr > *:nth-child(1) {
+  width: 50%;
+}
+#tournaments-table tr > *:nth-child(2) {
+  width: 20%;
+}
+#tournaments-table tr > *:nth-child(3) {
+  width: 20%;
+}
+#tournaments-table tr > *:nth-child(4) {
+  width: 10%;
+}
+
+.on {
+  color: #379683;
+}
+
+.off {
+  color: #c80004;
+}
+
+.fa-circle {
+  font-size: 0.5rem;
+}

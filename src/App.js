@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { selectAppLoading } from "./store/appState/selectors"
 import { getUserWithStoredToken } from "./store/user/actions"
 // import MessageBox from "./components/MessageBox"
+import TournamentsPage from "./pages/Tournaments/TournamentsPage"
+import TournamentPage from "./pages/Tournaments/TournamentPage"
 import PlayersPage from "./pages/Admin/PlayersPage"
 import TeamsPage from "./pages/Admin/TeamsPage"
 import ProfilePage from "./pages/User/ProfilePage"
@@ -25,6 +27,8 @@ function App() {
       {/* <MessageBox /> */}
       {isLoading ? <Loading /> : null}
       <Switch>
+        <Route path="/tournaments/:id" component={TournamentPage} />
+        <Route path="/tournaments" component={TournamentsPage} />
         <Route path="/players" component={PlayersPage} />
         <Route path="/teams" component={TeamsPage} />
         <Route path="/profile" component={ProfilePage} />
