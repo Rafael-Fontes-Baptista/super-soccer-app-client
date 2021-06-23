@@ -2,6 +2,7 @@
 
 table {
   width: 300px;
+  border-bottom: 10px solid #05386b;
   margin-bottom: 5px;
 }
 
