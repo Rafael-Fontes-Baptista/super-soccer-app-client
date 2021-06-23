@@ -62,24 +62,6 @@ tbody {
   overflow-y: scroll;
 }
 
-/* Table of Information */
-
-#tableOfInfo-table tr > *:nth-child(1) {
-  width: 36%;
-}
-#tableOfInfo-table tr > *:nth-child(2) {
-  width: 16%;
-}
-#tableOfInfo-table tr > *:nth-child(3) {
-  width: 16%;
-}
-#tableOfInfo-table tr > *:nth-child(4) {
-  width: 16%;
-}
-#tableOfInfo-table tr > *:nth-child(5) {
-  width: 16%;
-}
-
 .delete-button {
   border: none;
   color: #c80004;
