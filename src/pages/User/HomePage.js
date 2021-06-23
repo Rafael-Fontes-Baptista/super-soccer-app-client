@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { useHistory } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
-import { logOut } from "../../store/user/actions"
 import { selectUser } from "../../store/user/selectors"
+import { logOut } from "../../store/user/actions"
 import ProfileDetails from "../../components/ProfileDetails/ProfileDetails"
 import StandardButton from "../../components/Buttons/StandardButton"
 import "../pages.css"
@@ -9,6 +10,13 @@ import "../pages.css"
 export default function HomePage() {
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
+  const history = useHistory()
+
+  useEffect(() => {
+    if (user.token === null) {
+      history.push("/login")
+    }
+  }, [user.token, history])
 
   return (
     <div className="page-layout">
