@@ -15,45 +15,51 @@ export default function TournamentsTable() {
 
   return (
     <div>
-      <table id="tournaments-table">
-        <thead>
-          <tr>
-            <th>Tournaments ({tournaments.length})</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tournaments.map((item, index) => {
-            return (
-              <tr key={index}>
-                <td>
-                  {item.name}
-                  <br></br>
-                  <i
-                    className={`fas fa-circle ${
-                      item.status === "open" ? "on" : "off"
-                    }`}
-                  ></i>{" "}
-                  {item.date}
-                </td>
-                <td>
-                  0 <i className="fas fa-flag"></i>
-                </td>
-                <td>
-                  0 <i className="fas fa-users"></i>
-                </td>
-                <td>
-                  <button
-                    className="delete-button"
-                    // onClick={}
-                  >
-                    <i className="fas fa-trash-alt"></i>
-                  </button>
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      {tournaments.length === 0 ? (
+        <p>loading...</p>
+      ) : (
+        <table id="tournaments-table">
+          <thead>
+            <tr>
+              <th>Tournaments ({tournaments.length})</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tournaments.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td>
+                    <i
+                      className={`fas fa-circle ${
+                        item.status === "open" ? "on" : "off"
+                      }`}
+                    ></i>{" "}
+                    {item.name}
+                    <br></br>
+                    {item.date}
+                    <br></br>
+                    {item.time}
+                  </td>
+                  <td>
+                    0 <i className="fas fa-flag"></i>
+                  </td>
+                  <td>
+                    0 <i className="fas fa-users"></i>
+                  </td>
+                  <td>
+                    <button
+                      className="delete-button"
+                      // onClick={}
+                    >
+                      <i className="fas fa-trash-alt"></i>
+                    </button>
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      )}
     </div>
   )
 }
