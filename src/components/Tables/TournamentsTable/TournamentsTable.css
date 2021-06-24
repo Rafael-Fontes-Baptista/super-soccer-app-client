@@ -1,7 +1,7 @@
 /* Table of Tournaments */
 
 #tournaments-table tr > *:nth-child(1) {
-  width: 50%;
+  width: 45%;
 }
 #tournaments-table tr > *:nth-child(2) {
   width: 20%;
@@ -11,6 +11,9 @@
 }
 #tournaments-table tr > *:nth-child(4) {
   width: 10%;
+}
+#tournaments-table tr > *:nth-child(5) {
+  width: 5%;
 }
 
 .on {

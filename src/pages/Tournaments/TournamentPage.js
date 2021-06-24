@@ -5,7 +5,9 @@ import { useSelector, useDispatch } from "react-redux"
 import { selectUser } from "../../store/user/selectors"
 import { selectTournamentById } from "../../store/tournamentDetails/selectors"
 import { fetchTournamentById } from "../../store/tournamentDetails/actions"
+import { registerToTournament } from "../../store/tournamentDetails/actions"
 import TournamentInfo from "../../components/Tournament/TournamentInfo/TournamentInfo"
+import TournamentPlayers from "../../components/Tournament/TournamentPlayers/TournamentPlayers"
 import EditTournamentForm from "../../components/Forms/EditTournamentForm"
 import GoBackButton from "../../components/Buttons/GoBackButton"
 import StandardButton from "../../components/Buttons/StandardButton"
@@ -39,7 +41,8 @@ export default function TournamentPage() {
           ) : (
             <>
               <TournamentInfo tournament={tournament} />
-              {user.isAdmin ? (
+              <TournamentPlayers />
+              {user.isAdmin && (
                 <>
                   <StandardButton
                     to={`/tournaments/${id}/details`}
@@ -54,18 +57,15 @@ export default function TournamentPage() {
                     }}
                   />
                 </>
-              ) : (
-                <StandardButton
-                  type="submit"
-                  text="Participate"
-                  onClick={() => {
-                    set_editMode(true)
-                  }}
-                />
               )}
-              <GoBackButton to="/tournaments" />
             </>
           )}
+          <StandardButton
+            type="submit"
+            text="Participate"
+            onClick={() => dispatch(registerToTournament(id))}
+          />
+          <GoBackButton to="/tournaments" />
         </>
       )}
 

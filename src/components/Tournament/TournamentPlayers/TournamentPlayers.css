@@ -1,0 +1,32 @@
+/* Table of Players on a Tournament */
+
+#t-players-table th {
+  text-align: left;
+}
+#t-players-table button {
+  background-color: initial;
+  color: #fff;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#t-players-table button:hover {
+  background-color: #379683;
+}
+#t-players-table tr > *:nth-child(1) {
+  width: 60%;
+}
+#t-players-table tr > *:nth-child(2) {
+  width: 40%;
+  text-align: right;
+}
+
+#t-players-table tbody {
+  max-height: 200px;
+}
+
+.first-player-message {
+  background-color: #05386b;
+  padding: 10px;
+  width: 300px;
+}

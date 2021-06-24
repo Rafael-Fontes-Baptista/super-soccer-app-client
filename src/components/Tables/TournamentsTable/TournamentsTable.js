@@ -43,18 +43,13 @@ export default function TournamentsTable() {
                     <br></br>
                     {item.date}
                     <br></br>
-                    {item.time}{" "}
-                    <i
-                      className={`fas fa-circle ${
-                        item.status === "open" ? "on" : "off"
-                      }`}
-                    ></i>
+                    {item.time}
                   </td>
                   <td>
                     0 <i className="fas fa-flag"></i>
                   </td>
                   <td>
-                    0 <i className="fas fa-users"></i>
+                    {item.users.length} <i className="fas fa-users"></i>
                   </td>
                   <td>
                     <button
@@ -63,6 +58,13 @@ export default function TournamentsTable() {
                     >
                       <i className="fas fa-trash-alt"></i>
                     </button>
+                  </td>
+                  <td>
+                    <i
+                      className={`fas fa-circle ${
+                        item.status === "open" ? "on" : "off"
+                      }`}
+                    ></i>
                   </td>
                 </tr>
               )
