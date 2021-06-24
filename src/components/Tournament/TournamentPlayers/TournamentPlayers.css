@@ -26,7 +26,10 @@
 }
 
 .first-player-message {
-  background-color: #05386b;
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #379683;
+  height: 50px;
   width: 300px;
 }

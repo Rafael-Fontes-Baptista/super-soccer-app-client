@@ -2,6 +2,38 @@ button:focus {
   outline: none;
 }
 
+/* Cancel Button Style */
+
+.cancel-button {
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  color: #fff;
+}
+
+.cancel-button:hover {
+  text-decoration: underline;
+}
+
+/* Score Button Style */
+
+.goals-buttons button {
+  width: 70px;
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  border: 0.1px solid #fff;
+  color: #fff;
+}
+
+.goals-buttons button.plus {
+  background-color: #379683;
+}
+
+.goals-buttons button.minus {
+  background-color: #c80004;
+}
+
 /* Standard Button Style */
 
 .standard-button {
@@ -14,17 +46,4 @@ button:focus {
 
 .standard-button:hover {
   background-color: #379683;
-}
-
-/* Cancel Button Style */
-
-.cancel-button {
-  border: none;
-  background-color: transparent;
-  text-align: center;
-  color: #fff;
-}
-
-.cancel-button:hover {
-  text-decoration: underline;
 }

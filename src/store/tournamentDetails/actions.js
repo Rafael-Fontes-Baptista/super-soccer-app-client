@@ -1,5 +1,5 @@
 import { apiUrl } from "../../config/constants"
-import { selectToken } from "../user/selectors"
+import { selectToken, selectUser } from "../user/selectors"
 import axios from "axios"
 
 export const FETCH_TOURNAMENT_BY_ID_SUCCESS = "FETCH_TOURNAMENT_BY_ID_SUCCESS"
@@ -35,21 +35,21 @@ export const fetchTournamentById = (tournament_id) => {
   }
 }
 
-export const registerToTournament = (tournament_id) => {
+export const registerToTournament = (id) => {
   return async (dispatch, getState) => {
-    const token = selectToken(getState())
-    console.log("I am in action", token, tournament_id)
-    if (token === null) return
+    const user = selectUser(getState())
+    if (user.token === null) return
 
     try {
       const response = await axios.post(
-        `${apiUrl}/tournaments/${tournament_id}/players`,
+        `${apiUrl}/tournaments/${id}/players`,
+        {},
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${user.token}` },
         }
       )
       console.log("My response?", response.data)
-      // dispatch(registerToTournamentSuccess(response.data.newTournamentPlayer))
+      dispatch(registerToTournamentSuccess(user))
     } catch (e) {
       console.log(e.message)
     }

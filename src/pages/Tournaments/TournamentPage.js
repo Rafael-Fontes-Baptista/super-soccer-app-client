@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { selectUser } from "../../store/user/selectors"
 import { selectTournamentById } from "../../store/tournamentDetails/selectors"
-import { fetchTournamentById } from "../../store/tournamentDetails/actions"
 import { registerToTournament } from "../../store/tournamentDetails/actions"
 import TournamentInfo from "../../components/Tournament/TournamentInfo/TournamentInfo"
+import InputNumTeams from "../../components/InputNumTeams/InputNumTeams"
 import TournamentPlayers from "../../components/Tournament/TournamentPlayers/TournamentPlayers"
 import EditTournamentForm from "../../components/Forms/EditTournamentForm"
 import GoBackButton from "../../components/Buttons/GoBackButton"
@@ -26,11 +26,8 @@ export default function TournamentPage() {
     }
   }, [user.token, history])
 
-  useEffect(() => {
-    dispatch(fetchTournamentById(id))
-  }, [dispatch, id])
-
   const [editMode, set_editMode] = useState(false)
+  const [numTeams, set_numTeams] = useState()
 
   return (
     <div className="page-layout">
@@ -41,6 +38,10 @@ export default function TournamentPage() {
           ) : (
             <>
               <TournamentInfo tournament={tournament} />
+              <InputNumTeams
+                value={numTeams}
+                onChange={() => set_numTeams(numTeams)}
+              />
               <TournamentPlayers />
               {user.isAdmin && (
                 <>

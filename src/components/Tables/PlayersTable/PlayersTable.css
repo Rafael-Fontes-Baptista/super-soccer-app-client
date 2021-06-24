@@ -1,8 +1,8 @@
 #players-table {
   max-height: 150px;
 }
-#players-table tr.td {
-  height: 70px;
+#players-table td {
+  height: 75px;
 }
 #players-table tr > *:nth-child(1) {
   width: 20%;

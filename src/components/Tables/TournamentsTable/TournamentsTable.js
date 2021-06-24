@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { selectTournaments } from "../../../store/tournaments/selectors"
+import { fetchTournamentById } from "../../../store/tournamentDetails/actions"
 import { fetchTournaments } from "../../../store/tournaments/actions"
 import { deleteTournament } from "../../../store/tournaments/actions"
 import "./TournamentsTable.css"
@@ -38,18 +39,34 @@ export default function TournamentsTable() {
                           : `/tournaments/${item.id}/details`
                       }
                     >
-                      {item.name}
+                      <button
+                        className="tournament-button"
+                        type="button"
+                        onClick={() => dispatch(fetchTournamentById(item.id))}
+                      >
+                        <i
+                          className={`fas fa-circle ${
+                            item.status === "open" ? "on" : "off"
+                          }`}
+                        ></i>{" "}
+                        T#{item.id}
+                      </button>
                     </Link>
-                    <br></br>
+                  </td>
+                  <td>
                     {item.date}
                     <br></br>
                     {item.time}
                   </td>
                   <td>
-                    0 <i className="fas fa-flag"></i>
+                    <i className="fas fa-map-marker-alt"></i>
+                    <br></br>
+                    {item.local}
                   </td>
                   <td>
-                    {item.users.length} <i className="fas fa-users"></i>
+                    <i className="fas fa-users"></i>
+                    <br></br>
+                    {item.users && item.users.length}
                   </td>
                   <td>
                     <button
@@ -58,13 +75,6 @@ export default function TournamentsTable() {
                     >
                       <i className="fas fa-trash-alt"></i>
                     </button>
-                  </td>
-                  <td>
-                    <i
-                      className={`fas fa-circle ${
-                        item.status === "open" ? "on" : "off"
-                      }`}
-                    ></i>
                   </td>
                 </tr>
               )
