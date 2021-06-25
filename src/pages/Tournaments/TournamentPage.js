@@ -4,21 +4,29 @@ import { useParams } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { selectUser } from "../../store/user/selectors"
 import { selectTournamentById } from "../../store/tournamentDetails/selectors"
-import { registerToTournament } from "../../store/tournamentDetails/actions"
-import TournamentInfo from "../../components/Tournament/TournamentInfo/TournamentInfo"
+import {
+  registerToTournament,
+  leaveTournament,
+} from "../../store/tournamentDetails/actions"
+import { generateTournament } from "../../store/tournamentDetails/actions"
+import TournamentInfo from "../../components/TournamentInfo/TournamentInfo"
 import InputNumTeams from "../../components/InputNumTeams/InputNumTeams"
-import TournamentPlayers from "../../components/Tournament/TournamentPlayers/TournamentPlayers"
+import TournamentPlayers from "../../components/Tables/TournamentDetailsTables/TournamentPlayersTable/TournamentPlayersTable"
 import EditTournamentForm from "../../components/Forms/EditTournamentForm"
 import GoBackButton from "../../components/Buttons/GoBackButton"
 import StandardButton from "../../components/Buttons/StandardButton"
 import "./../pages.css"
 
 export default function TournamentPage() {
+  const dispatch = useDispatch()
   const { id } = useParams()
   const history = useHistory()
-  const dispatch = useDispatch()
   const user = useSelector(selectUser)
   const tournament = useSelector(selectTournamentById)
+  const userRegistered =
+    tournament.users && tournament.users.find((u) => u.id === user.id)
+      ? true
+      : false
 
   useEffect(() => {
     if (user.token === null) {
@@ -31,24 +39,25 @@ export default function TournamentPage() {
 
   return (
     <div className="page-layout">
-      {!editMode && (
+      {tournament.length === 0 ? (
+        <p>loading...</p>
+      ) : (
         <>
-          {tournament.length === 0 ? (
-            <p>loading...</p>
-          ) : (
+          {!editMode && (
             <>
               <TournamentInfo tournament={tournament} />
-              <InputNumTeams
-                value={numTeams}
-                onChange={() => set_numTeams(numTeams)}
-              />
-              <TournamentPlayers />
+              <TournamentPlayers user={user} />
               {user.isAdmin && (
                 <>
+                  <InputNumTeams
+                    value={numTeams}
+                    onChange={() => set_numTeams(numTeams)}
+                  />
                   <StandardButton
                     to={`/tournaments/${id}/details`}
                     type="submit"
                     text="Start"
+                    onClick={() => dispatch(generateTournament(id))}
                   />
                   <StandardButton
                     type="submit"
@@ -59,17 +68,24 @@ export default function TournamentPage() {
                   />
                 </>
               )}
+              {userRegistered ? (
+                <StandardButton
+                  type="submit"
+                  text="Leave"
+                  onClick={() => dispatch(leaveTournament(id))}
+                />
+              ) : (
+                <StandardButton
+                  type="submit"
+                  text="Participate"
+                  onClick={() => dispatch(registerToTournament(id))}
+                />
+              )}
+              <GoBackButton to="/tournaments" />
             </>
           )}
-          <StandardButton
-            type="submit"
-            text="Participate"
-            onClick={() => dispatch(registerToTournament(id))}
-          />
-          <GoBackButton to="/tournaments" />
         </>
       )}
-
       {editMode && (
         <EditTournamentForm
           toggleAddMode={() => set_editMode(!editMode)}

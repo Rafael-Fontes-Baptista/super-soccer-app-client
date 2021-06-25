@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import ScoreButton from "../../Buttons/ScoreButton"
+import ScoreButton from "../Buttons/ScoreButton"
 import "./TournamentPainel.css"
 
 export default function TournamentPainel(props) {

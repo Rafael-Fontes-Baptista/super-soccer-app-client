@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import { selectTournamentById } from "../../store/tournamentDetails/selectors"
 import { selectUser } from "../../store/user/selectors"
-import TournamentInfo from "../../components/Tournament/TournamentInfo/TournamentInfo"
-import TournamentPainel from "../../components/Tournament/TournamentPainel/TournamentPainel"
-import TournamentRankingTable from "../../components/Tables/TournamentRankingTable/TournamentRankingTable"
-import MatchesTable from "../../components/Tables/MatchesTable/MatchesTable"
-import TournamentTeamsTable from "../../components/Tables/TournamentTeamsTable/TournamentTeamsTable"
+import TournamentInfo from "../../components/TournamentInfo/TournamentInfo"
+import TournamentPainel from "../../components/TournamentPainel/TournamentPainel"
+import TournamentRankingTable from "../../components/Tables/TournamentDetailsTables/TournamentRankingTable/TournamentRankingTable"
+import MatchesTable from "../../components/Tables/TournamentDetailsTables/TournamentMatchesTable/TournamentMatchesTable"
+import TournamentTeamsTable from "../../components/Tables/TournamentDetailsTables/TournamentTeamsTable/TournamentTeamsTable"
 import StandardButton from "../../components/Buttons/StandardButton"
 import GoBackButton from "../../components/Buttons/GoBackButton"
 import "../pages.css"
 import "../../components/Tables/Tabs.css"
 
 export default function TournamentDetailsPage() {
+  const history = useHistory()
   const tournament = useSelector(selectTournamentById)
   const user = useSelector(selectUser)
-  const history = useHistory()
 
   useEffect(() => {
     if (user.token === null) {
@@ -33,7 +33,7 @@ export default function TournamentDetailsPage() {
       ) : (
         <>
           <TournamentInfo tournament={tournament} />
-          {tournament.status === "open" ? (
+          {tournament.status === "started" ? (
             <>
               <TournamentPainel teams={tournament.teams} user={user} />
               {user.isAdmin && (
@@ -41,7 +41,9 @@ export default function TournamentDetailsPage() {
               )}
             </>
           ) : (
-            <p className="first-player-message">Tournament finished</p>
+            <p className="first-player-message">
+              Champion: {tournament.champion} 🏆
+            </p>
           )}
 
           <div className="tournament-tab">

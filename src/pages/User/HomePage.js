@@ -18,23 +18,36 @@ export default function HomePage() {
     }
   }, [user.token, history])
 
+  if (!user.status) {
+    setTimeout(() => dispatch(logOut()), 5000)
+  }
+
   return (
     <div className="page-layout">
-      <ProfileDetails user={user} />
-      <StandardButton to="/tournaments" type="button" text="Tournaments" />
-      <StandardButton to="/profile" type="button" text="My Profile" />
-      {user.isAdmin && (
+      {user.status === false ? (
         <>
-          <StandardButton to="/players" type="button" text="Players" />
-          <StandardButton to="/teams" type="button" text="Teams" />
+          <h2>Your account is inactive.</h2>
+          <p>Please contact the app's administrator.</p>
+        </>
+      ) : (
+        <>
+          <ProfileDetails user={user} />
+          <StandardButton to="/tournaments" type="button" text="Tournaments" />
+          <StandardButton to="/profile" type="button" text="My Profile" />
+          {user.isAdmin && (
+            <>
+              <StandardButton to="/players" type="button" text="Players" />
+              <StandardButton to="/teams" type="button" text="Teams" />
+            </>
+          )}
+          <StandardButton
+            to="/login"
+            type="button"
+            text="Logout"
+            onClick={() => dispatch(logOut())}
+          />
         </>
       )}
-      <StandardButton
-        to="/login"
-        type="button"
-        text="Logout"
-        onClick={() => dispatch(logOut())}
-      />
     </div>
   )
 }

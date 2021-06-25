@@ -15,14 +15,24 @@ button:focus {
   text-decoration: underline;
 }
 
+/* Go Back Button Style */
+
+.goback-button {
+  margin-top: 5px;
+}
+
+.cancel-button:hover {
+  text-decoration: underline;
+}
+
 /* Score Button Style */
 
 .goals-buttons button {
+  border: 0.1px solid #fff;
   width: 70px;
   height: 50px;
   font-size: 1.2rem;
   font-weight: 800;
-  border: 0.1px solid #fff;
   color: #fff;
 }
 

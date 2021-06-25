@@ -1,7 +1,7 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { selectTournamentPlayers } from "../../../store/tournamentDetails/selectors"
-import "./TournamentPlayers.css"
+import { selectTournamentPlayers } from "../../../../store/tournamentDetails/selectors"
+import "./TournamentPlayersTable.css"
 
 export default function TournamentPlayers() {
   const players = useSelector(selectTournamentPlayers)
@@ -11,8 +11,8 @@ export default function TournamentPlayers() {
     const oStar = "far fa-star"
     const xStar = "fas fa-star"
 
-    return arrayStars.map((item) => (
-      <i className={stars < item ? oStar : xStar}></i>
+    return arrayStars.map((item, index) => (
+      <i key={index} className={stars < item ? oStar : xStar}></i>
     ))
   }
   return (
@@ -33,7 +33,18 @@ export default function TournamentPlayers() {
             {players.map((item, index) => {
               return (
                 <tr key={index}>
-                  <td>{item.full_name}</td>
+                  <td>
+                    <img
+                      src={item.avatar_url}
+                      alt="avatar-sm"
+                      className="avatar-sm"
+                    ></img>
+                  </td>
+                  <td>
+                    {item.full_name}
+                    <br></br>
+                    {item.email}
+                  </td>
                   <td>{createStarIcon(item.stars)}</td>
                 </tr>
               )

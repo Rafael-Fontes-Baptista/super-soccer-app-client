@@ -1,8 +1,8 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { selectTournamentMatches } from "../../../store/tournamentDetails/selectors"
-import "./MatchesTable.css"
-import "../Tabs.css"
+import { selectTournamentMatches } from "../../../../store/tournamentDetails/selectors"
+import "./TournamentMatchesTable.css"
+import "../../Tabs.css"
 
 export default function MatchesTable() {
   const matches = useSelector(selectTournamentMatches)

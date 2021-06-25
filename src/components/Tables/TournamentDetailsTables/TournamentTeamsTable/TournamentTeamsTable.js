@@ -1,8 +1,8 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { selectTournamentTeams } from "../../../store/tournamentDetails/selectors"
+import { selectTournamentTeams } from "../../../../store/tournamentDetails/selectors"
 import "./TournamentTeamsTable.css"
-import "../Tabs.css"
+import "../../Tabs.css"
 
 export default function TournamentTeamsTable() {
   const teams = useSelector(selectTournamentTeams)
@@ -16,6 +16,7 @@ export default function TournamentTeamsTable() {
           <tr>
             <th>Team</th>
             <th>Color</th>
+            <th>Stars</th>
             <th>Players</th>
           </tr>
         </thead>
@@ -34,6 +35,12 @@ export default function TournamentTeamsTable() {
                       }}
                     ></i>
                     {item.team.abrev}
+                  </td>
+                  <td>
+                    <i className="fas fa-star"></i>{" "}
+                    {item.users
+                      .map((user) => user.stars)
+                      .reduce((a, b) => a + b, 0)}
                   </td>
                   <td>show</td>
                 </tr>

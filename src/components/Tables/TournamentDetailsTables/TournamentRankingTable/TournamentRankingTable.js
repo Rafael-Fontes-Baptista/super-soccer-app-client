@@ -1,7 +1,8 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { selectTournamentTeams } from "../../../store/tournamentDetails/selectors"
+import { selectTournamentTeams } from "../../../../store/tournamentDetails/selectors"
 import "./TournamentRankingTable.css"
+import "../../Tabs.css"
 
 export default function RankingTable() {
   const teams = useSelector(selectTournamentTeams)
@@ -33,7 +34,12 @@ export default function RankingTable() {
           {ranking.map((item, index) => {
             return (
               <tr key={index}>
-                <td>{item.team.name}</td>
+                <td>
+                  {index + 1}°{"  "}
+                  {item.team.name}
+                  {"   "}
+                  {index === 0 && item.wins > 0 && "🏆"}
+                </td>
                 <td>{item.wins}</td>
                 <td>{item.draws}</td>
                 <td>{item.defeats}</td>

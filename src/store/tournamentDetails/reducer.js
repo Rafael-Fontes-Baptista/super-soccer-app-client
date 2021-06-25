@@ -1,6 +1,7 @@
 import {
   FETCH_TOURNAMENT_BY_ID_SUCCESS,
   REGISTER_TOURNAMENT_SUCCESS,
+  LEAVE_TOURNAMENT_SUCCESS,
 } from "./actions"
 
 const initialState = []
@@ -14,7 +15,17 @@ export default (state = initialState, action) => {
     case REGISTER_TOURNAMENT_SUCCESS:
       return {
         ...state,
-        users: [...state.users, action.payload],
+        users: [action.payload, ...state.users],
+      }
+
+    case LEAVE_TOURNAMENT_SUCCESS:
+      const playerLeavingId = action.payload
+      const playersListUpdated = state.users.filter(
+        (p) => p.id !== playerLeavingId
+      )
+      return {
+        ...state,
+        users: [...playersListUpdated],
       }
 
     default:

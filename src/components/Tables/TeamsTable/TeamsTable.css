@@ -1,11 +1,14 @@
 /* Table of Teams */
 
 #teams-table tr > *:nth-child(1) {
-  width: 40%;
+  width: 33%;
+  padding-left: 20px;
 }
 #teams-table tr > *:nth-child(2) {
-  width: 30%;
+  width: 33%;
 }
 #teams-table tr > *:nth-child(3) {
-  width: 30%;
+  width: 33%;
+  text-align: right;
+  padding-right: 20px;
 }
