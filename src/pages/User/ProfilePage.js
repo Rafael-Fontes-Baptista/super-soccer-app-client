@@ -19,8 +19,8 @@ export default function ProfilePage() {
   }, [user.token, history])
 
   const [userDetails, set_userDetails] = useState({
-    avatar_url: user.avatar_url,
-    full_name: user.full_name,
+    avatarUrl: user.avatarUrl,
+    fullName: user.fullName,
     email: user.email,
     password: "",
   })
@@ -39,15 +39,15 @@ export default function ProfilePage() {
     e.preventDefault()
     dispatch(
       updateProfile(
-        userDetails.full_name,
+        userDetails.fullName,
         userDetails.email,
         userDetails.password,
-        userDetails.avatar_url
+        userDetails.avatarUrl
       )
     )
     set_userDetails({
-      avatar_url: userDetails.avatar_url,
-      full_name: userDetails.full_name,
+      avatarUrl: userDetails.avatarUrl,
+      fullName: userDetails.fullName,
       email: userDetails.email,
       password: "",
     })

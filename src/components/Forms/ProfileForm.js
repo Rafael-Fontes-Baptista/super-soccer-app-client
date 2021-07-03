@@ -8,14 +8,14 @@ export default function SignupForm(props) {
       <form className="login-form">
         <img
           className="avatar-placeholder"
-          src={props.user.avatar_url}
+          src={props.user.avatarUrl}
           alt="avatar-player"
         ></img>
         <div className="form-group">
           <input
             type="text"
-            name="full_name"
-            value={props.user.full_name}
+            name="fullName"
+            value={props.user.fullName}
             className="form-control"
             placeholder="Full Name"
             onChange={props.onChange}

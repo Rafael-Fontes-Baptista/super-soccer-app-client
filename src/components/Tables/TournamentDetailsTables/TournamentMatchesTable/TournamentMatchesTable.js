@@ -1,13 +1,27 @@
 import React from "react"
-import { useSelector } from "react-redux"
-import { selectTournamentMatches } from "../../../../store/tournamentDetails/selectors"
 import "./TournamentMatchesTable.css"
+import "../../Tables.css"
 import "../../Tabs.css"
 
-export default function MatchesTable() {
-  const matches = useSelector(selectTournamentMatches)
+export default function MatchesTable(props) {
+  const matches = props.tournament.matches
+  const tournamentTeams = props.tournament.tournamentTeams
 
-  matches.length !== 0 && matches.sort((a, b) => a.match_order - b.match_order)
+  const findTeam = (team) => {
+    const tournamentTeam = tournamentTeams.find((t) => t.team.abrev === team)
+    return (
+      <>
+        <i
+          className="fas fa-square"
+          style={{
+            color: tournamentTeam.team.color,
+            marginRight: "5px",
+          }}
+        ></i>{" "}
+        {tournamentTeam.team.abrev}
+      </>
+    )
+  }
 
   return (
     <div>
@@ -24,12 +38,20 @@ export default function MatchesTable() {
             {matches.map((item, index) => {
               return (
                 <tr key={index}>
-                  <td>{item.match_order}</td>
+                  <td>{item.matchOrder}ª</td>
+                  <td>{findTeam(item.teamA)}</td>
                   <td>
-                    {item.team_a} ({item.goals_team_a} x {item.goals_team_b}){" "}
-                    {item.team_b}
+                    ({item.goalsTeamA} x {item.goalsTeamB})
                   </td>
-                  <td>{item.status ? "open" : "finished"}</td>
+                  <td>{findTeam(item.teamB)}</td>
+                  <td>
+                    {" "}
+                    <i
+                      className={`fas fa-circle ${
+                        item.status ? "open" : "finished"
+                      }`}
+                    ></i>
+                  </td>
                 </tr>
               )
             })}

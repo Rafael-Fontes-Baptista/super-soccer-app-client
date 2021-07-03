@@ -1,13 +1,11 @@
 import React from "react"
-import { useSelector } from "react-redux"
-import { selectTournamentTeams } from "../../../../store/tournamentDetails/selectors"
 import "./TournamentTeamsTable.css"
 import "../../Tabs.css"
 
-export default function TournamentTeamsTable() {
-  const teams = useSelector(selectTournamentTeams)
+export default function TournamentTeamsTable(props) {
+  const teams = props.tournament.tournamentTeams
 
-  teams.length !== 0 && teams.sort((a, b) => a.match_order - b.match_order)
+  teams.length !== 0 && teams.sort((a, b) => a.matchOrder - b.matchOrder)
 
   return (
     <div>

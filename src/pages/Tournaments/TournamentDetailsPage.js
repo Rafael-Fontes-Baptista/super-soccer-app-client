@@ -8,7 +8,6 @@ import TournamentPainel from "../../components/TournamentPainel/TournamentPainel
 import TournamentRankingTable from "../../components/Tables/TournamentDetailsTables/TournamentRankingTable/TournamentRankingTable"
 import MatchesTable from "../../components/Tables/TournamentDetailsTables/TournamentMatchesTable/TournamentMatchesTable"
 import TournamentTeamsTable from "../../components/Tables/TournamentDetailsTables/TournamentTeamsTable/TournamentTeamsTable"
-import StandardButton from "../../components/Buttons/StandardButton"
 import GoBackButton from "../../components/Buttons/GoBackButton"
 import "../pages.css"
 import "../../components/Tables/Tabs.css"
@@ -35,10 +34,7 @@ export default function TournamentDetailsPage() {
           <TournamentInfo tournament={tournament} />
           {tournament.status === "started" ? (
             <>
-              <TournamentPainel teams={tournament.teams} user={user} />
-              {user.isAdmin && (
-                <StandardButton type="submit" text="Finish Match" />
-              )}
+              <TournamentPainel tournament={tournament} user={user} />
             </>
           ) : (
             <p className="first-player-message">
@@ -57,9 +53,13 @@ export default function TournamentDetailsPage() {
               Teams
             </button>
           </div>
-          {tabState === "Ranking" && <TournamentRankingTable />}
-          {tabState === "Matches" && <MatchesTable />}
-          {tabState === "Teams" && <TournamentTeamsTable />}
+          {tabState === "Ranking" && (
+            <TournamentRankingTable tournament={tournament} />
+          )}
+          {tabState === "Matches" && <MatchesTable tournament={tournament} />}
+          {tabState === "Teams" && (
+            <TournamentTeamsTable tournament={tournament} />
+          )}
           <GoBackButton to="/tournaments" />
         </>
       )}

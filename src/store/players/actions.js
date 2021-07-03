@@ -68,7 +68,6 @@ export const updatePlayerStatus = (player_id, status) => {
 
 export const updatePlayerStars = (player_id, stars) => {
   return async (dispatch, getState) => {
-    console.log("action stars", stars, "user_id", player_id)
     const token = selectToken(getState())
 
     if (token === null) return

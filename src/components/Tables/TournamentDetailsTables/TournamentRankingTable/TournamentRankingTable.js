@@ -1,15 +1,13 @@
 import React from "react"
-import { useSelector } from "react-redux"
-import { selectTournamentTeams } from "../../../../store/tournamentDetails/selectors"
 import "./TournamentRankingTable.css"
 import "../../Tabs.css"
 
-export default function RankingTable() {
-  const teams = useSelector(selectTournamentTeams)
+export default function RankingTable(props) {
+  const teams = props.tournament.tournamentTeams
   const ranking = teams.sort((a, b) => {
     const scoreComparison = b.score - a.score
     if (!scoreComparison) {
-      return b.goals_done - b.goals_taken - (a.goals_done - a.goals_taken)
+      return b.goalsFor - b.goalsAgainst - (a.goalsFor - a.goalsAgainst)
     } else {
       return scoreComparison
     }
@@ -37,15 +35,13 @@ export default function RankingTable() {
                 <td>
                   {index + 1}°{"  "}
                   {item.team.name}
-                  {"   "}
-                  {index === 0 && item.wins > 0 && "🏆"}
                 </td>
                 <td>{item.wins}</td>
                 <td>{item.draws}</td>
                 <td>{item.defeats}</td>
-                <td>{item.goals_done}</td>
-                <td>{item.goals_taken}</td>
-                <td>{item.goals_done - item.goals_taken}</td>
+                <td>{item.goalsFor}</td>
+                <td>{item.goalsAgainst}</td>
+                <td>{item.goalsFor - item.goalsAgainst}</td>
                 <td>{item.score}</td>
               </tr>
             )

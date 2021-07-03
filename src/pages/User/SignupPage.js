@@ -18,10 +18,10 @@ export default function SignupPage() {
   }, [token, history])
 
   const [user, setUser] = useState({
-    full_name: "",
+    fullName: "",
     email: "",
     password: "",
-    avatar_url:
+    avatarUrl:
       "https://image.freepik.com/vetores-gratis/personagem-de-avatar-jovem_24877-9475.jpg",
   })
 
@@ -38,12 +38,12 @@ export default function SignupPage() {
   const submitForm = (e) => {
     e.preventDefault()
 
-    dispatch(signUp(user.full_name, user.email, user.password, user.avatar_url))
+    dispatch(signUp(user.fullName, user.email, user.password, user.avatarUrl))
     setUser({
-      full_name: "",
+      fullName: "",
       email: "",
       password: "",
-      avatar_url:
+      avatarUrl:
         "https://image.freepik.com/vetores-gratis/personagem-de-avatar-jovem_24877-9475.jpg",
     })
   }

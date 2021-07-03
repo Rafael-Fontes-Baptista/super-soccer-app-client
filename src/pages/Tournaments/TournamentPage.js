@@ -3,7 +3,10 @@ import { useHistory } from "react-router"
 import { useParams } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { selectUser } from "../../store/user/selectors"
-import { selectTournamentById } from "../../store/tournamentDetails/selectors"
+import {
+  selectTournamentById,
+  selectTournamentPlayers,
+} from "../../store/tournamentDetails/selectors"
 import {
   registerToTournament,
   leaveTournament,
@@ -23,6 +26,7 @@ export default function TournamentPage() {
   const history = useHistory()
   const user = useSelector(selectUser)
   const tournament = useSelector(selectTournamentById)
+  const players = useSelector(selectTournamentPlayers)
   const userRegistered =
     tournament.users && tournament.users.find((u) => u.id === user.id)
       ? true
@@ -46,7 +50,7 @@ export default function TournamentPage() {
           {!editMode && (
             <>
               <TournamentInfo tournament={tournament} />
-              <TournamentPlayers user={user} />
+              <TournamentPlayers user={user} players={players} />
               {user.isAdmin && (
                 <>
                   <InputNumTeams

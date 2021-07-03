@@ -1,4 +1,5 @@
 import React from "react"
+import { useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { updatePlayerStatus } from "../../../store/players/actions"
 import { updatePlayerStars } from "../../../store/players/actions"
@@ -7,9 +8,10 @@ import "../Tables.css"
 
 export default function PlayersTable(props) {
   const dispatch = useDispatch()
+  const history = useHistory()
   const players = props.players
 
-  const createStarIcon = (user_id, stars) => {
+  const createStarIcon = (userId, stars) => {
     let arrayStars = [1, 2, 3, 4, 5]
     const oStar = "far fa-star"
     const xStar = "fas fa-star"
@@ -19,7 +21,10 @@ export default function PlayersTable(props) {
       return (
         <button
           className="stars-button"
-          onClick={() => dispatch(updatePlayerStars(user_id, starValue))}
+          onClick={() => {
+            dispatch(updatePlayerStars(userId, starValue))
+            history.push("/players")
+          }}
         >
           <i key={index} className={stars < item ? oStar : xStar}></i>
         </button>
@@ -41,13 +46,13 @@ export default function PlayersTable(props) {
               <tr key={index}>
                 <td>
                   <img
-                    src={item.avatar_url}
+                    src={item.avatarUrl}
                     alt="avatar-sm"
                     className="avatar-sm"
                   ></img>
                 </td>
                 <td>
-                  {item.full_name} {item.isAdmin && "(adm)"}
+                  {item.fullName} {item.isAdmin && "(adm)"}
                   <br></br>
                   {item.email}
                   <br></br>

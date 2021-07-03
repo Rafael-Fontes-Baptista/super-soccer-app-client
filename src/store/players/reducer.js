@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
       const playersList_statusUpdated = [
         ...cleanOldPlayer,
         playerWithNewStatus,
-      ].sort((a, b) => a.full_name.localeCompare(b.full_name))
+      ].sort((a, b) => a.fullName.localeCompare(b.fullName))
 
       return playersList_statusUpdated
 
@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
       const playersList_starsUpdated = [
         ...deleteOldPlayer,
         playerWithStarsUpdated,
-      ].sort((a, b) => a.full_name.localeCompare(b.full_name))
+      ].sort((a, b) => a.fullName.localeCompare(b.fullName))
       return playersList_starsUpdated
 
     default:

@@ -106,3 +106,31 @@ export const leaveTournament = (id) => {
     }
   }
 }
+
+export const finishMatch = (
+  id,
+  matchId,
+  teamAId,
+  teamAScore,
+  teamBId,
+  teamBScore
+) => {
+  return async (dispatch, getState) => {
+    const user = selectUser(getState())
+    if (user.token === null) return
+    try {
+      const response = await axios.patch(
+        `${apiUrl}/tournaments/${id}/matches/${matchId}`,
+        { teamAId, teamAScore, teamBId, teamBScore },
+        {
+          headers: { Authorization: `Bearer ${user.token}` },
+        }
+      )
+      console.log("My response?", response.data)
+      dispatch(fetchTournamentById(id))
+      dispatch(fetchTournaments())
+    } catch (e) {
+      console.log(e.message)
+    }
+  }
+}

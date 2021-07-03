@@ -18,7 +18,7 @@ export default function HomePage() {
     }
   }, [user.token, history])
 
-  if (!user.status) {
+  if (user.status === false) {
     setTimeout(() => dispatch(logOut()), 5000)
   }
 

@@ -24,22 +24,6 @@
   padding-right: 10px;
 }
 
-.open {
-  color: #379683;
-}
-
-.started {
-  color: #ffdf00;
-}
-
-.finished {
-  color: #c80004;
-}
-
-.fa-circle {
-  font-size: 0.5rem;
-}
-
 .tournament-button {
   border: none;
   background-color: transparent;

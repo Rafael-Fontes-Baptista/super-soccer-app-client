@@ -1,11 +1,8 @@
 import React from "react"
-import { useSelector } from "react-redux"
-import { selectTournamentPlayers } from "../../../../store/tournamentDetails/selectors"
 import "./TournamentPlayersTable.css"
 
-export default function TournamentPlayers() {
-  const players = useSelector(selectTournamentPlayers)
-
+export default function TournamentPlayers(props) {
+  const players = props.players
   const createStarIcon = (stars) => {
     let arrayStars = [1, 2, 3, 4, 5]
     const oStar = "far fa-star"
@@ -35,13 +32,13 @@ export default function TournamentPlayers() {
                 <tr key={index}>
                   <td>
                     <img
-                      src={item.avatar_url}
+                      src={item.avatarUrl}
                       alt="avatar-sm"
                       className="avatar-sm"
                     ></img>
                   </td>
                   <td>
-                    {item.full_name}
+                    {item.fullName}
                     <br></br>
                     {item.email}
                   </td>

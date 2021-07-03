@@ -67,12 +67,14 @@ export default function TournamentsTable(props) {
                 </td>
                 {user.isAdmin && (
                   <td>
-                    <button
-                      className="delete-button"
-                      onClick={() => dispatch(deleteTournament(item.id))}
-                    >
-                      <i className="fas fa-trash-alt"></i>
-                    </button>
+                    {item.status === "open" && (
+                      <button
+                        className="delete-button"
+                        onClick={() => dispatch(deleteTournament(item.id))}
+                      >
+                        <i className="fas fa-trash-alt"></i>
+                      </button>
+                    )}
                   </td>
                 )}
               </tr>
