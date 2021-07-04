@@ -24,17 +24,6 @@ export default function TournamentsTable(props) {
             return (
               <tr key={index}>
                 <td>
-                  <i
-                    className={`fas fa-circle ${
-                      item.status === "open"
-                        ? "open"
-                        : item.status === "started"
-                        ? "started"
-                        : "finished"
-                    }`}
-                  ></i>
-                </td>
-                <td>
                   <Link
                     to={
                       item.status === "open"
@@ -47,23 +36,28 @@ export default function TournamentsTable(props) {
                       type="button"
                       onClick={() => dispatch(fetchTournamentById(item.id))}
                     >
-                      T#{item.id}
+                      {item.name}{" "}
                     </button>
                   </Link>
                 </td>
                 <td>
-                  {item.date}
-                  <br></br>({item.time})
+                  {item.date} <br></br>
+                  <i
+                    className={`fas fa-circle ${
+                      item.status === "open"
+                        ? "open"
+                        : item.status === "started"
+                        ? "started"
+                        : "finished"
+                    }`}
+                  ></i>
+                  {"  "}
+                  {item.time}
                 </td>
                 <td>
                   <i className="fas fa-users"></i>
                   <br></br>
                   {item.users && item.users.length}
-                </td>
-                <td>
-                  <i className="fas fa-map-marker-alt"></i>
-                  <br></br>
-                  {item.local}
                 </td>
                 {user.isAdmin && (
                   <td>

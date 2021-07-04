@@ -7,7 +7,7 @@ export default function InputNumTeams(props) {
       <label className="form-control">Nº of Teams</label>
       <input
         type="number"
-        name="n_teams"
+        name="numOfTeams"
         placeholder={0}
         min={0}
         value={props.value}

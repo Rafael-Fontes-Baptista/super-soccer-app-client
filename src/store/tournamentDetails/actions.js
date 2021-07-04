@@ -42,7 +42,7 @@ export const fetchTournamentById = (tournament_id) => {
   }
 }
 
-export const generateTournament = (tournament_id) => {
+export const generateTournament = (tournament_id, numOfTeams) => {
   return async (dispatch, getState) => {
     const token = selectToken(getState())
 
@@ -52,7 +52,7 @@ export const generateTournament = (tournament_id) => {
       const response = await axios.post(
         `${apiUrl}/tournaments/${tournament_id}/details`,
         {
-          teamsId: [1, 2, 3, 4],
+          numOfTeams,
         },
         {
           headers: { Authorization: `Bearer ${token}` },

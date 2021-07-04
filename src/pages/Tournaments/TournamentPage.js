@@ -39,7 +39,7 @@ export default function TournamentPage() {
   }, [user.token, history])
 
   const [editMode, set_editMode] = useState(false)
-  const [numTeams, set_numTeams] = useState()
+  const [numOfTeams, set_numOfTeams] = useState(0)
 
   return (
     <div className="page-layout">
@@ -54,14 +54,14 @@ export default function TournamentPage() {
               {user.isAdmin && (
                 <>
                   <InputNumTeams
-                    value={numTeams}
-                    onChange={() => set_numTeams(numTeams)}
+                    value={numOfTeams}
+                    onChange={(e) => set_numOfTeams(e.target.value)}
                   />
                   <StandardButton
                     to={`/tournaments/${id}/details`}
                     type="submit"
                     text="Start"
-                    onClick={() => dispatch(generateTournament(id))}
+                    onClick={() => dispatch(generateTournament(id, numOfTeams))}
                   />
                   <StandardButton
                     type="submit"
