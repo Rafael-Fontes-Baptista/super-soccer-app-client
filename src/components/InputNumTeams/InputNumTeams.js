@@ -6,12 +6,12 @@ export default function InputNumTeams(props) {
     <div className="numbers-imput">
       <label className="form-control">Nº of Teams</label>
       <input
+        className="form-control"
         type="number"
         name="numOfTeams"
         placeholder={0}
         min={0}
         value={props.value}
-        className="form-control"
         onChange={props.onChange}
         required
       ></input>

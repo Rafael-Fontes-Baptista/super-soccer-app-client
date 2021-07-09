@@ -30,7 +30,7 @@ export default function PlayersPage() {
         <p>loading...</p>
       ) : (
         <>
-          <PlayersTable players={players} />
+          <PlayersTable />
           <GoBackButton to="/" />
         </>
       )}

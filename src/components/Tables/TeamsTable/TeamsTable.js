@@ -17,31 +17,36 @@ export default function TeamsTable(props) {
           </tr>
         </thead>
         <tbody>
-          {teams.map((item, index) => {
+          {teams.map((team, index) => {
             return (
-              <tr key={index}>
-                <td>{item.name}</td>
+              <tr key={team.id}>
+                <td>{team.name}</td>
                 <td>
-                  <i
-                    className="fas fa-square"
+                  <span
                     style={{
-                      color: item.color,
-                      marginRight: "5px",
+                      marginRight: "10px",
+                      width: "5px",
+                      height: "5px",
+                      border: "1px solid #05386b",
+                      backgroundColor: `${team.color}`,
+                      color: "rgba(0,0,0,0)",
                     }}
-                  ></i>
-                  {item.abrev}{" "}
+                  >
+                    ◾
+                  </span>
+                  {team.abrev}
                 </td>
                 <td>
                   {props.type === "select" ? (
                     <input
                       type="checkbox"
-                      name={item.color}
-                      value={item.id}
+                      name={team.color}
+                      value={team.id}
                     ></input>
                   ) : (
                     <button
                       className="delete-button"
-                      onClick={() => dispatch(deleteTeam(item.id))}
+                      onClick={() => dispatch(deleteTeam(team.id))}
                     >
                       <i className="fas fa-trash-alt"></i>
                     </button>

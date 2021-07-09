@@ -15,6 +15,7 @@ export default function TournamentsPage() {
   const history = useHistory()
   const user = useSelector(selectUser)
   const tournaments = useSelector(selectTournaments)
+  tournaments.sort((a, b) => b.date.localeCompare(a.date))
 
   useEffect(() => {
     dispatch(fetchTournaments())
@@ -38,6 +39,7 @@ export default function TournamentsPage() {
               <TournamentsTable tournaments={tournaments} user={user} />
               {user.isAdmin && (
                 <StandardButton
+                  to="/tournaments"
                   type="submit"
                   text="Add Tournament"
                   onClick={() => {
@@ -49,7 +51,10 @@ export default function TournamentsPage() {
             </>
           )}
           {addMode && (
-            <AddTournamentForm toggleAddMode={() => set_addMode(!addMode)} />
+            <AddTournamentForm
+              tournaments={tournaments}
+              toggleAddMode={() => set_addMode(!addMode)}
+            />
           )}
         </>
       )}

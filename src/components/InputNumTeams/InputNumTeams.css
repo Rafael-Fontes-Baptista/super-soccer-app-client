@@ -2,6 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 400px;
+}
+
+@media screen and (max-width: 600px) {
+  .numbers-imput {
+    width: 300px;
+  }
 }
 
 .numbers-imput label {
@@ -9,7 +16,7 @@
   align-items: center;
   background-color: #000;
   color: #fff;
-  width: 200px;
+  width: 66%;
   padding: 15px 20px;
   height: 50px;
   line-height: 1.5;
@@ -21,7 +28,7 @@
 }
 
 .numbers-imput input {
-  width: 100px;
+  width: 34%;
   height: 50px;
   padding-left: 20px;
   margin-bottom: 5px;

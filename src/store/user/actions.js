@@ -119,7 +119,6 @@ export const updateProfile = (fullName, email, password, avatarUrl) => {
     const token = selectToken(getState())
 
     if (token === null) return
-    dispatch(appLoading())
     try {
       const response = await axios.patch(
         `${apiUrl}/profile`,
@@ -135,8 +134,6 @@ export const updateProfile = (fullName, email, password, avatarUrl) => {
       )
 
       dispatch(updateProfileSuccess(response.data))
-      dispatch(showMessageWithTimeout("success", true, "profile updated"))
-      dispatch(appDoneLoading())
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message)
@@ -145,7 +142,6 @@ export const updateProfile = (fullName, email, password, avatarUrl) => {
         console.log(error.message)
         dispatch(setMessage("danger", true, error.message))
       }
-      dispatch(appDoneLoading())
     }
   }
 }

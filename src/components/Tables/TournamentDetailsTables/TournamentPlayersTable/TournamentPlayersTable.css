@@ -37,5 +37,11 @@
   justify-content: center;
   background-color: #379683;
   height: 50px;
-  width: 300px;
+  width: 400px;
+}
+
+@media screen and (max-width: 600px) {
+  .first-player-message {
+    width: 300px;
+  }
 }

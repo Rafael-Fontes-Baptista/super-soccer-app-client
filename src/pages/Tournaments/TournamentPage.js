@@ -12,6 +12,7 @@ import {
   leaveTournament,
 } from "../../store/tournamentDetails/actions"
 import { generateTournament } from "../../store/tournamentDetails/actions"
+import MessageBox from "../../components/MessageBox/MessageBox"
 import TournamentInfo from "../../components/TournamentInfo/TournamentInfo"
 import InputNumTeams from "../../components/InputNumTeams/InputNumTeams"
 import TournamentPlayers from "../../components/Tables/TournamentDetailsTables/TournamentPlayersTable/TournamentPlayersTable"
@@ -38,11 +39,24 @@ export default function TournamentPage() {
     }
   }, [user.token, history])
 
+  const [message, setMessage] = useState("")
   const [editMode, set_editMode] = useState(false)
   const [numOfTeams, set_numOfTeams] = useState(0)
 
+  const createTournament = (e) => {
+    if (numOfTeams < 2) {
+      setMessage("⚠️ Minimum of 2 teams")
+      setTimeout(() => setMessage(""), 3000)
+      console.log("I am in validation")
+    } else {
+      console.log("I will dispatch")
+      dispatch(generateTournament(id, numOfTeams))
+    }
+  }
+
   return (
     <div className="page-layout">
+      <MessageBox message={message} />
       {tournament.length === 0 ? (
         <p>loading...</p>
       ) : (
@@ -61,9 +75,10 @@ export default function TournamentPage() {
                     to={`/tournaments/${id}/details`}
                     type="submit"
                     text="Start"
-                    onClick={() => dispatch(generateTournament(id, numOfTeams))}
+                    onClick={createTournament}
                   />
                   <StandardButton
+                    to={`/tournaments/${id}`}
                     type="submit"
                     text="Edit"
                     onClick={() => {
@@ -74,12 +89,14 @@ export default function TournamentPage() {
               )}
               {userRegistered ? (
                 <StandardButton
+                  to={`/tournaments/${id}`}
                   type="submit"
                   text="Leave"
                   onClick={() => dispatch(leaveTournament(id))}
                 />
               ) : (
                 <StandardButton
+                  to={`/tournaments/${id}`}
                   type="submit"
                   text="Participate"
                   onClick={() => dispatch(registerToTournament(id))}
@@ -94,6 +111,7 @@ export default function TournamentPage() {
         <EditTournamentForm
           toggleAddMode={() => set_editMode(!editMode)}
           tournament={tournament}
+          setMessage={setMessage}
         />
       )}
     </div>

@@ -3,6 +3,10 @@ import "./TournamentPlayersTable.css"
 
 export default function TournamentPlayers(props) {
   const players = props.players
+  const playersActive = players
+    .filter((p) => p.status === true)
+    .sort((a, b) => a.fullName.localeCompare(b.fullName))
+
   const createStarIcon = (stars) => {
     let arrayStars = [1, 2, 3, 4, 5]
     const oStar = "far fa-star"
@@ -14,7 +18,7 @@ export default function TournamentPlayers(props) {
   }
   return (
     <div>
-      {players.length === 0 ? (
+      {playersActive.length === 0 ? (
         <p className="first-player-message">
           Be the first player to participate
         </p>
@@ -22,12 +26,12 @@ export default function TournamentPlayers(props) {
         <table id="t-players-table">
           <thead>
             <tr>
-              <th>Players ({players.length}) </th>
+              <th>Players ({playersActive.length}) </th>
             </tr>
           </thead>
 
           <tbody>
-            {players.map((item, index) => {
+            {playersActive.map((item, index) => {
               return (
                 <tr key={index}>
                   <td>

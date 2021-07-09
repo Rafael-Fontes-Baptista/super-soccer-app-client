@@ -34,24 +34,36 @@ export default function TournamentsTable(props) {
                     <button
                       className="tournament-button"
                       type="button"
-                      onClick={() => dispatch(fetchTournamentById(item.id))}
+                      onClick={() => {
+                        dispatch(fetchTournamentById(item.id))
+                      }}
                     >
                       {item.name}{" "}
                     </button>
                   </Link>
                 </td>
                 <td>
+                  <span
+                    style={{
+                      borderRadius: "50%",
+                      border: "1px solid #05386b",
+                      width: "10px",
+                      height: "5px",
+                      color: "rgba(0,0,0,0)",
+                      backgroundColor: `${
+                        item.status === "open"
+                          ? "#379683"
+                          : item.status === "started"
+                          ? "#FFFF00"
+                          : "#c80004"
+                      }`,
+                    }}
+                  >
+                    ◾
+                  </span>
+                </td>
+                <td>
                   {item.date} <br></br>
-                  <i
-                    className={`fas fa-circle ${
-                      item.status === "open"
-                        ? "open"
-                        : item.status === "started"
-                        ? "started"
-                        : "finished"
-                    }`}
-                  ></i>
-                  {"  "}
                   {item.time}
                 </td>
                 <td>

@@ -1,6 +1,6 @@
 .avatar-profile {
   margin-bottom: 10px;
-  width: 200px;
+  width: 250px;
   border: 2px solid #000;
 }
 
@@ -21,7 +21,7 @@
 .profile-description {
   background-color: rgba(0, 0, 0, 0.5);
   text-align: left;
-  width: 200px;
+  width: 250px;
   padding: 10px;
 }
 
@@ -29,4 +29,14 @@
 .profile-description p {
   color: #fff;
   margin: 2px;
+}
+
+@media screen and (max-width: 600px) {
+  .avatar-profile {
+    width: 200px;
+  }
+
+  .profile-description {
+    width: 200px;
+  }
 }

@@ -67,6 +67,7 @@ export default function TournamentPainel(props) {
           </div>
 
           <StandardButton
+            to={`/tournaments/${tournamentId}/details`}
             type="submit"
             text="Finish Match"
             onClick={() => {

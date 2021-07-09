@@ -43,13 +43,25 @@ export default function TournamentDetailsPage() {
           )}
 
           <div className="tournament-tab">
-            <button className="btn" onClick={() => set_tabState("Ranking")}>
+            <button
+              id="#active"
+              className={`btn ${tabState === "Ranking" && "active"}`}
+              onClick={() => {
+                set_tabState("Ranking")
+              }}
+            >
               Ranking
             </button>
-            <button className="btn" onClick={() => set_tabState("Matches")}>
+            <button
+              className={`btn ${tabState === "Matches" && "active"}`}
+              onClick={() => set_tabState("Matches")}
+            >
               Matches
             </button>
-            <button className="btn" onClick={() => set_tabState("Teams")}>
+            <button
+              className={`btn ${tabState === "Teams" && "active"}`}
+              onClick={() => set_tabState("Teams")}
+            >
               Teams
             </button>
           </div>

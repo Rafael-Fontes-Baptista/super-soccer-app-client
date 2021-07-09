@@ -72,6 +72,7 @@ export const registerToTournament = (id) => {
     if (user.token === null) return
 
     try {
+      // eslint-disable-next-line
       const response = await axios.post(
         `${apiUrl}/tournaments/${id}/players`,
         {},
@@ -79,7 +80,7 @@ export const registerToTournament = (id) => {
           headers: { Authorization: `Bearer ${user.token}` },
         }
       )
-      console.log("My response?", response.data)
+
       dispatch(registerToTournamentSuccess(user))
     } catch (e) {
       console.log(e.message)
@@ -93,13 +94,14 @@ export const leaveTournament = (id) => {
     if (user.token === null) return
 
     try {
+      // eslint-disable-next-line
       const response = await axios.delete(
         `${apiUrl}/tournaments/${id}/players`,
         {
           headers: { Authorization: `Bearer ${user.token}` },
         }
       )
-      console.log("My response?", response.data)
+
       dispatch(leaveTournamentSuccess(user.id))
     } catch (e) {
       console.log(e.message)
@@ -119,6 +121,7 @@ export const finishMatch = (
     const user = selectUser(getState())
     if (user.token === null) return
     try {
+      // eslint-disable-next-line
       const response = await axios.patch(
         `${apiUrl}/tournaments/${id}/matches/${matchId}`,
         { teamAId, teamAScore, teamBId, teamBScore },
@@ -126,7 +129,6 @@ export const finishMatch = (
           headers: { Authorization: `Bearer ${user.token}` },
         }
       )
-      console.log("My response?", response.data)
       dispatch(fetchTournamentById(id))
       dispatch(fetchTournaments())
     } catch (e) {

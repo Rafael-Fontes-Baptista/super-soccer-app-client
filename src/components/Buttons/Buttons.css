@@ -48,12 +48,19 @@ button:focus {
 
 .standard-button {
   margin: 3px;
-  width: 300px;
-  height: 60px;
+  width: 400px;
+  height: 70px;
   background-color: #05386b;
   color: #fff;
 }
 
 .standard-button:hover {
   background-color: #379683;
+}
+
+@media screen and (max-width: 600px) {
+  .standard-button {
+    width: 300px;
+    height: 60px;
+  }
 }

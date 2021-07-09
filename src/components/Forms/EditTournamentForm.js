@@ -28,27 +28,39 @@ export default function AddTournamentForm(props) {
 
   const editTournament = (e) => {
     e.preventDefault()
-    dispatch(
-      updateTournament(
-        tournament.id,
-        tournamentEdited.name,
-        tournamentEdited.date,
-        tournamentEdited.time,
-        tournamentEdited.local
+    if (
+      tournament.name === tournamentEdited.name &&
+      tournament.date === tournamentEdited.date &&
+      tournament.time === tournamentEdited.time &&
+      tournament.local === tournamentEdited.local
+    ) {
+      props.setMessage("⚠️  No data changed")
+      setTimeout(() => props.setMessage(""), 3000)
+    } else {
+      dispatch(
+        updateTournament(
+          tournament.id,
+          tournamentEdited.name,
+          tournamentEdited.date,
+          tournamentEdited.time,
+          tournamentEdited.local
+        )
       )
-    )
-    set_tournamentEdited({
-      name: tournament.name,
-      date: tournament.date,
-      time: tournament.time,
-      local: tournament.local,
-    })
-    props.toggleAddMode(false)
+      set_tournamentEdited({
+        name: tournament.name,
+        date: tournament.date,
+        time: tournament.time,
+        local: tournament.local,
+      })
+      props.toggleAddMode(false)
+      props.setMessage("✅' Successfully edited !")
+      setTimeout(() => props.setMessage(""), 3000)
+    }
   }
 
   return (
     <div>
-      <h3>
+      <h3 className="form-title">
         <i className="fas fa-trophy"></i> Edit Tournament
       </h3>
       <form className="login-form">
@@ -88,7 +100,12 @@ export default function AddTournamentForm(props) {
             required
           ></input>
         </div>
-        <StandardButton type="submit" text="Save" onClick={editTournament} />
+        <StandardButton
+          to={`/tournaments/${tournament.id}`}
+          type="submit"
+          text="Save"
+          onClick={editTournament}
+        />
       </form>
       <CancelButton onClick={() => props.toggleAddMode(false)} />
     </div>

@@ -13,28 +13,32 @@ export default (state = initialState, action) => {
       return [...action.payload]
 
     case UPDATE_PLAYER_STATUS_SUCCESS:
-      const playerWithNewStatus = action.payload
-      const cleanOldPlayer = state.filter(
-        (p) => p.id !== playerWithNewStatus.id
-      )
-      const playersList_statusUpdated = [
-        ...cleanOldPlayer,
-        playerWithNewStatus,
-      ].sort((a, b) => a.fullName.localeCompare(b.fullName))
+      const playersUpdated_status = state.map((player) => {
+        if (player.id === action.payload.id) {
+          return {
+            ...player,
+            status: action.payload.status,
+          }
+        } else {
+          return player
+        }
+      })
 
-      return playersList_statusUpdated
+      return [...playersUpdated_status]
 
     case UPDATE_PLAYER_STARS_SUCCESS:
-      const playerWithStarsUpdated = action.payload
-      const deleteOldPlayer = state.filter(
-        (p) => p.id !== playerWithStarsUpdated.id
-      )
+      const playersUpdated_stars = state.map((player) => {
+        if (player.id === action.payload.id) {
+          return {
+            ...player,
+            stars: action.payload.stars,
+          }
+        } else {
+          return player
+        }
+      })
 
-      const playersList_starsUpdated = [
-        ...deleteOldPlayer,
-        playerWithStarsUpdated,
-      ].sort((a, b) => a.fullName.localeCompare(b.fullName))
-      return playersList_starsUpdated
+      return [...playersUpdated_stars]
 
     default:
       return state

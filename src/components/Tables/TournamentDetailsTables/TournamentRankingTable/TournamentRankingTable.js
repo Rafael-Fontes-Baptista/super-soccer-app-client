@@ -29,20 +29,20 @@ export default function RankingTable(props) {
           </tr>
         </thead>
         <tbody>
-          {ranking.map((item, index) => {
+          {ranking.map((team, index) => {
             return (
-              <tr key={index}>
+              <tr key={team.id}>
                 <td>
                   {index + 1}°{"  "}
-                  {item.team.name}
+                  {team.team.name}
                 </td>
-                <td>{item.wins}</td>
-                <td>{item.draws}</td>
-                <td>{item.defeats}</td>
-                <td>{item.goalsFor}</td>
-                <td>{item.goalsAgainst}</td>
-                <td>{item.goalsFor - item.goalsAgainst}</td>
-                <td>{item.score}</td>
+                <td>{team.wins}</td>
+                <td>{team.draws}</td>
+                <td>{team.defeats}</td>
+                <td>{team.goalsFor}</td>
+                <td>{team.goalsAgainst}</td>
+                <td>{team.goalsFor - team.goalsAgainst}</td>
+                <td>{team.score}</td>
               </tr>
             )
           })}

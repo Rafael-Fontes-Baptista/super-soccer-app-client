@@ -4,17 +4,16 @@ import "../../Tabs.css"
 
 export default function TournamentTeamsTable(props) {
   const teams = props.tournament.tournamentTeams
-  teams.length !== 0 && teams.sort((a, b) => a.matchOrder - b.matchOrder)
 
   const [playersViewMode, set_playersViewMode] = useState(false)
 
-  const createStarIcon = (stars) => {
+  const createStarIcon = (playerStars) => {
     let arrayStars = [1, 2, 3, 4, 5]
     const oStar = "far fa-star"
     const xStar = "fas fa-star"
 
-    return arrayStars.map((item, index) => (
-      <i key={index} className={stars < item ? oStar : xStar}></i>
+    return arrayStars.map((star, index) => (
+      <i key={index} className={playerStars < star ? oStar : xStar}></i>
     ))
   }
 
@@ -36,23 +35,23 @@ export default function TournamentTeamsTable(props) {
         </thead>
         {teams.length !== 0 && (
           <tbody>
-            {teams.map((item, index) => {
+            {teams.map((team) => {
               return (
-                <>
-                  <tr key={index}>
+                <React.Fragment key={team.id}>
+                  <tr>
                     <td>
                       <i
                         className="fas fa-square"
                         style={{
-                          color: item.team.color,
+                          color: team.team.color,
                           marginRight: "5px",
                         }}
                       ></i>
-                      {item.team.abrev}
+                      {team.team.abrev} - {team.team.name}
                     </td>
                     <td>
                       <i className="fas fa-star"></i>{" "}
-                      {item.users
+                      {team.users
                         .map((user) => user.stars)
                         .reduce((a, b) => a + b, 0)}
                     </td>
@@ -60,15 +59,15 @@ export default function TournamentTeamsTable(props) {
                   {playersViewMode && (
                     <tr>
                       <td className="team-players-list">
-                        {item.users.map((user, index) => (
-                          <span key={index}>
+                        {team.users.map((user) => (
+                          <span key={user.id}>
                             {createStarIcon(user.stars)} {user.fullName}
                           </span>
                         ))}
                       </td>
                     </tr>
                   )}
-                </>
+                </React.Fragment>
               )
             })}
           </tbody>

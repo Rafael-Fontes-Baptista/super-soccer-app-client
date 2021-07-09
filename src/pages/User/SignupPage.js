@@ -3,6 +3,7 @@ import { signUp } from "../../store/user/actions"
 import { selectToken } from "../../store/user/selectors"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, Link } from "react-router-dom"
+import MessageBox from "../../components/MessageBox/MessageBox"
 import SignupForm from "../../components/Forms/SignupForm"
 import "../pages.css"
 
@@ -17,6 +18,7 @@ export default function SignupPage() {
     }
   }, [token, history])
 
+  const [message, setMessage] = useState("")
   const [user, setUser] = useState({
     fullName: "",
     email: "",
@@ -37,18 +39,23 @@ export default function SignupPage() {
 
   const submitForm = (e) => {
     e.preventDefault()
-
-    dispatch(signUp(user.fullName, user.email, user.password, user.avatarUrl))
-    setUser({
-      fullName: "",
-      email: "",
-      password: "",
-      avatarUrl:
-        "https://image.freepik.com/vetores-gratis/personagem-de-avatar-jovem_24877-9475.jpg",
-    })
+    if (!user.fullName || !user.email || !user.password) {
+      setMessage("⚠️ Please, provide your full name, email and password !")
+      setTimeout(() => setMessage(""), 4000)
+    } else {
+      dispatch(signUp(user.fullName, user.email, user.password, user.avatarUrl))
+      setUser({
+        fullName: "",
+        email: "",
+        password: "",
+        avatarUrl:
+          "https://image.freepik.com/vetores-gratis/personagem-de-avatar-jovem_24877-9475.jpg",
+      })
+    }
   }
   return (
     <div className="page-layout">
+      <MessageBox message={message} />
       <SignupForm user={user} onChange={handleChange} onSubmit={submitForm} />
       <Link to="/login" style={{ textAlign: "center", color: "#fff" }}>
         Click here to Login

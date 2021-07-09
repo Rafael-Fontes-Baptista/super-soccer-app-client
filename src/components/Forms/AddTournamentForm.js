@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { createTournament } from "../../store/tournaments/actions.js"
+import MessageBox from "../MessageBox/MessageBox.js"
 import StandardButton from "../Buttons/StandardButton.js"
 import CancelButton from "../Buttons/CancelButton.js"
 import "./Forms.css"
@@ -8,6 +9,7 @@ import "./Forms.css"
 export default function AddTournamentForm(props) {
   const dispatch = useDispatch()
 
+  const [message, setMessage] = useState("")
   const [newTournament, set_newTournament] = useState({
     name: "",
     date: "",
@@ -27,27 +29,45 @@ export default function AddTournamentForm(props) {
 
   const addTournament = (e) => {
     e.preventDefault()
-
-    dispatch(
-      createTournament(
-        newTournament.name,
-        newTournament.date,
-        newTournament.time,
-        newTournament.local
+    if (
+      !newTournament.name ||
+      !newTournament.date ||
+      !newTournament.time ||
+      !newTournament.local
+    ) {
+      setMessage("⚠️ Please, provide title, date, time and local !")
+      setTimeout(() => setMessage(""), 4000)
+    } else {
+      const tournamentAlreadyExists = props.tournaments.find(
+        (t) => t.name === newTournament.name
       )
-    )
-    set_newTournament({
-      name: "",
-      date: "",
-      time: "",
-      local: "",
-    })
-    props.toggleAddMode(false)
+      if (tournamentAlreadyExists) {
+        setMessage("⚠️ A tournament with this name already exists !")
+        setTimeout(() => setMessage(""), 4000)
+      } else {
+        dispatch(
+          createTournament(
+            newTournament.name,
+            newTournament.date,
+            newTournament.time,
+            newTournament.local
+          )
+        )
+        set_newTournament({
+          name: "",
+          date: "",
+          time: "",
+          local: "",
+        })
+        props.toggleAddMode(false)
+      }
+    }
   }
 
   return (
     <div>
-      <h3>
+      <MessageBox message={message} />
+      <h3 className="form-title">
         <i className="fas fa-trophy"></i> New Tournament
       </h3>
       <form className="login-form">
