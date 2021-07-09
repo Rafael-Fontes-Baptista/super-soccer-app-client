@@ -53,6 +53,7 @@ export const createTeam = (name, abrev, color) => {
         }
       )
       dispatch(createTeamSuccess(response.data.newTeam))
+      dispatch(fetchTeams())
     } catch (e) {
       console.log(e.message)
     }
@@ -66,10 +67,11 @@ export const deleteTeam = (team_id) => {
     if (token === null) return
 
     try {
+      // eslint-disable-next-line
       const response = await axios.delete(`${apiUrl}/teams/${team_id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      console.log("team deleted?", response.data)
+
       dispatch(deleteTeamSuccess(team_id))
     } catch (e) {
       console.log(e.message)

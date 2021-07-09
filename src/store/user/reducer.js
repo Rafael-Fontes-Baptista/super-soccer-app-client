@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   token: localStorage.getItem("token"),
-  full_name: null,
+  fullName: null,
   email: null,
   isAdmin: null,
 }

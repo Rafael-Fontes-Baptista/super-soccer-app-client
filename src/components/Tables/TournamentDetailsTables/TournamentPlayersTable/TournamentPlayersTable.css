@@ -1,0 +1,47 @@
+/* Table of Players on a Tournament */
+
+#t-players-table th {
+  text-align: left;
+}
+#t-players-table button {
+  background-color: initial;
+  color: #fff;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#t-players-table button:hover {
+  background-color: #379683;
+}
+#t-players-table tr > *:nth-child(1) {
+  width: 20%;
+  padding-left: 10px;
+}
+#t-players-table tr > *:nth-child(2) {
+  width: 40%;
+  text-align: left;
+}
+#t-players-table tr > *:nth-child(3) {
+  width: 40%;
+  text-align: right;
+  padding-right: 20px;
+}
+
+#t-players-table tbody {
+  max-height: 200px;
+}
+
+.first-player-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #379683;
+  height: 50px;
+  width: 400px;
+}
+
+@media screen and (max-width: 600px) {
+  .first-player-message {
+    width: 300px;
+  }
+}

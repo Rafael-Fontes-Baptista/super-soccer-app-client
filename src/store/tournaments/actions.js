@@ -1,5 +1,6 @@
 import { apiUrl } from "../../config/constants"
 import { selectToken } from "../user/selectors"
+import { fetchTournamentById } from "../tournamentDetails/actions"
 import axios from "axios"
 
 export const FETCH_TOURNAMENTS_SUCCESS = "FETCH_TOURNAMENTS_SUCCESS"
@@ -68,7 +69,6 @@ export const createTournament = (name, date, time, local) => {
 export const updateTournament = (tournament_id, name, date, time, local) => {
   return async (dispatch, getState) => {
     const token = selectToken(getState())
-    console.log("receiving in action", tournament_id, name, date, time, local)
 
     if (token === null) return
 
@@ -81,6 +81,7 @@ export const updateTournament = (tournament_id, name, date, time, local) => {
         }
       )
       dispatch(updateTournamentSuccess(response.data.tournamentToUpdate))
+      dispatch(fetchTournamentById(tournament_id))
     } catch (e) {
       console.log(e.message)
     }
@@ -94,13 +95,14 @@ export const deleteTournament = (tournament_id) => {
     if (token === null) return
 
     try {
+      // eslint-disable-next-line
       const response = await axios.delete(
         `${apiUrl}/tournaments/${tournament_id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
-      console.log("tournament deleted?", response.data)
+
       dispatch(deleteTournamentSuccess(tournament_id))
     } catch (e) {
       console.log(e.message)

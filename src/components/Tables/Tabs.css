@@ -1,0 +1,39 @@
+.tournament-tab {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  padding: 0;
+  border-bottom: 1px solid #000;
+}
+
+.tournament-tab button {
+  width: 133.34px;
+  margin: 0;
+  background-color: #05386b;
+  color: #fff;
+  border-radius: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .tournament-tab {
+    width: 300px;
+  }
+
+  .tournament-tab button {
+    width: 100px;
+  }
+}
+
+.tournament-tab button:hover {
+  background-color: #aaa;
+  color: #05386b;
+}
+
+.tournament-tab .active {
+  background-color: #ddd;
+  color: #05386b;
+}
+
+.tournament-tab .active:hover {
+  background-color: #ddd;
+}

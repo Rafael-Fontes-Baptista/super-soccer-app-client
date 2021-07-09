@@ -34,15 +34,15 @@ const tokenStillValid = (userWithoutToken) => ({
 
 export const logOut = () => ({ type: LOG_OUT })
 
-export const signUp = (full_name, email, password, avatar_url) => {
+export const signUp = (fullName, email, password, avatarUrl) => {
   return async (dispatch, getState) => {
     dispatch(appLoading())
     try {
       const response = await axios.post(`${apiUrl}/signup`, {
-        full_name,
+        fullName,
         email,
         password,
-        avatar_url,
+        avatarUrl,
       })
 
       dispatch(loginSuccess(response.data))
@@ -114,20 +114,19 @@ export const getUserWithStoredToken = () => {
   }
 }
 
-export const updateProfile = (full_name, email, password, avatar_url) => {
+export const updateProfile = (fullName, email, password, avatarUrl) => {
   return async (dispatch, getState) => {
     const token = selectToken(getState())
 
     if (token === null) return
-    dispatch(appLoading())
     try {
       const response = await axios.patch(
         `${apiUrl}/profile`,
         {
-          full_name,
+          fullName,
           email,
           password,
-          avatar_url,
+          avatarUrl,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -135,8 +134,6 @@ export const updateProfile = (full_name, email, password, avatar_url) => {
       )
 
       dispatch(updateProfileSuccess(response.data))
-      dispatch(showMessageWithTimeout("success", true, "profile updated"))
-      dispatch(appDoneLoading())
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message)
@@ -145,7 +142,6 @@ export const updateProfile = (full_name, email, password, avatar_url) => {
         console.log(error.message)
         dispatch(setMessage("danger", true, error.message))
       }
-      dispatch(appDoneLoading())
     }
   }
 }

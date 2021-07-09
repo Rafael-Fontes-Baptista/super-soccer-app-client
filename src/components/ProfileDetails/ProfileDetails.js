@@ -20,7 +20,7 @@ export default function ProfileDetails(props) {
       </div>
       <img
         className="avatar-profile"
-        src={user.avatar_url}
+        src={user.avatarUrl}
         alt="avatar-player"
       ></img>
     </div>

@@ -1,26 +1,34 @@
 /* Table of Tournaments */
 
 #tournaments-table tr > *:nth-child(1) {
-  width: 50%;
+  width: 43%;
+  padding-left: 10px;
 }
 #tournaments-table tr > *:nth-child(2) {
-  width: 20%;
+  width: 5%;
+  font-size: 0.5rem;
 }
 #tournaments-table tr > *:nth-child(3) {
-  width: 20%;
+  width: 27%;
+  font-size: 0.7rem;
 }
 #tournaments-table tr > *:nth-child(4) {
-  width: 10%;
+  width: 12%;
+}
+#tournaments-table tr > *:nth-child(5) {
+  width: 12%;
+  text-align: right;
+  padding-right: 10px;
 }
 
-.on {
-  color: #379683;
+.tournament-button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  color: blue;
 }
 
-.off {
+.tournament-button:hover {
   color: #c80004;
-}
-
-.fa-circle {
-  font-size: 0.5rem;
 }

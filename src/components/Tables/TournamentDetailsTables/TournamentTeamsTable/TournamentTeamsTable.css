@@ -1,0 +1,45 @@
+#tournament-teams-table tr > *:nth-child(1) {
+  width: 60%;
+  padding-left: 15px;
+}
+#tournament-teams-table tr > *:nth-child(2) {
+  width: 40%;
+  text-align: right;
+  padding-right: 15px;
+}
+
+#tournament-teams-table tbody {
+  max-height: 200px;
+}
+
+#tournament-teams-table th {
+  font-size: 0.7rem;
+  background-color: #000;
+}
+
+#tournament-teams-table th,
+#tournament-teams-table td {
+  padding: 2px;
+}
+
+.team-players-list {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.show-players {
+  width: 85px;
+  border: none;
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.show-players:hover {
+  border: none;
+  border: 1px solid #fff;
+  background-color: #fff;
+  color: #000;
+}

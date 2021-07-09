@@ -3,6 +3,7 @@ import { login } from "../../store/user/actions"
 import { selectToken } from "../../store/user/selectors"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, Link } from "react-router-dom"
+import MessageBox from "../../components/MessageBox/MessageBox"
 import Logo from "../../components/Logo/Logo"
 import LoginForm from "../../components/Forms/LoginForm"
 import "../pages.css"
@@ -18,6 +19,7 @@ export default function LoginPage() {
     }
   }, [token, history])
 
+  const [message, setMessage] = useState("")
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -35,16 +37,21 @@ export default function LoginPage() {
 
   const submitForm = (e) => {
     e.preventDefault()
-
-    dispatch(login(user.email, user.password))
-    setUser({
-      email: "",
-      password: "",
-    })
+    if (!user.email || !user.password) {
+      setMessage("⚠️ Please, provide email and password !")
+      setTimeout(() => setMessage(""), 3000)
+    } else {
+      dispatch(login(user.email, user.password))
+      setUser({
+        email: "",
+        password: "",
+      })
+    }
   }
 
   return (
     <div className="page-layout">
+      <MessageBox message={message} />
       <Logo />
       <LoginForm user={user} onChange={handleChange} onSubmit={submitForm} />
       <Link to="/signup" style={{ textAlign: "center", color: "#fff" }}>

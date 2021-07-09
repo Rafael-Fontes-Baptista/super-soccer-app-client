@@ -13,7 +13,10 @@ export default (state = initialState, action) => {
       return [...action.payload]
 
     case CREATE_TEAM_SUCCESS:
-      return [...state, action.payload]
+      const newTeamList = [...state, action.payload].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      )
+      return newTeamList
 
     case DELETE_TEAM_SUCCESS:
       const teamId = action.payload

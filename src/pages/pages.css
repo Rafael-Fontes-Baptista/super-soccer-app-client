@@ -4,9 +4,9 @@
   justify-content: center;
   align-items: center;
   margin: 0;
-  width: 100vw;
-  height: 100vh;
-  border: 10px solid #fff;
+  padding: 50px 0;
+  min-width: 100vw;
+  min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -14,4 +14,15 @@
   margin-bottom: 20px;
   width: 200px;
   border: 2px solid #000;
+}
+
+.fa-trophy,
+.fa-star,
+.fa-user-plus,
+.fa-flag,
+.fa-map,
+.fa-lock-open,
+.fa-calendar-alt,
+.fa-clock {
+  color: #ffdf00;
 }

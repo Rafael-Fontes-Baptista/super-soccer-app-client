@@ -1,9 +1,14 @@
 /* Teams Table */
-
 table {
-  width: 300px;
+  width: 400px;
   border-bottom: 10px solid #05386b;
   margin-bottom: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    width: 300px;
+  }
 }
 
 table,
@@ -14,8 +19,7 @@ td {
 
 th,
 td {
-  padding: 5px 10px;
-  font-size: 0.8rem;
+  padding: 5px;
 }
 
 th {
@@ -29,7 +33,7 @@ td {
   text-align: center;
   border-bottom: none;
   border-left: none;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 tr {
@@ -58,18 +62,19 @@ thead {
 
 tbody {
   display: block;
-  max-height: 300px;
-  overflow-y: scroll;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .delete-button {
   border: none;
-  color: #05386b;
+  color: #c80004;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .delete-button:hover {
-  color: #c80004;
+  color: #05386b;
 }
 
 .view-mode-button {
@@ -82,4 +87,30 @@ tbody {
 
 .view-mode-button:hover {
   background-color: #379683;
+}
+
+.open {
+  color: #379683;
+}
+
+.started {
+  color: #ffdf00;
+}
+
+.finished {
+  color: #c80004;
+}
+
+.fa-circle {
+  font-size: 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    max-height: 300px;
+  }
+
+  td {
+    font-size: 0.8rem;
+  }
 }
